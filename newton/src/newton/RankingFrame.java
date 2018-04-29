@@ -12,14 +12,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class RankingPanel extends JFrame {
+public class RankingFrame extends JFrame {
 	
 	
 	private static final long serialVersionUID = 1L;
-	RankingPanel(MainPanel main){
+	RankingFrame(MainFrame main){
 		
 		super("Ranking");
-		mainP=main;
+		mainFrame=main;
 		this.setSize(400,400);
 		JPanel panel= new JPanel();
 		
@@ -31,12 +31,12 @@ public class RankingPanel extends JFrame {
 				setVisible(false);
 			}
 		});
-		if(mainP.n=="pl")
+		if(mainFrame.n=="pl")
 		{
 			exit.setText("Powrót");
 			
 		}
-		if(mainP.n=="en")
+		if(mainFrame.n=="en")
 		{
 			exit.setText("Back");
 			
@@ -58,5 +58,5 @@ public class RankingPanel extends JFrame {
 	
 JButton exit;
 JPanel panel;
-MainPanel mainP;
+MainFrame mainFrame;
 }

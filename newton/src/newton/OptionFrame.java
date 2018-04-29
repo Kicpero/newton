@@ -10,14 +10,14 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-public class OptionPanel  extends JFrame{
+public class OptionFrame  extends JFrame{
 	private static final long serialVersionUID = 1L;
 
 	
 	
-	public OptionPanel(MainPanel main) {
+	public OptionFrame(MainFrame main) {
 		
-		mainPanel=main;
+		mainFrame=main;
 		
 		vehicle_color = new JButton("Wybierz kolor rakiety");
 		
@@ -38,12 +38,12 @@ public class OptionPanel  extends JFrame{
 				setVisible(false);
 			}
 		});
-		if(mainPanel.n=="pl")
+		if(mainFrame.n=="pl")
 		{
 			exit.setText("Powrót");
 			vehicle_color.setText("Wybierz kolor rakiety");
 		}
-		if(mainPanel.n=="en")
+		if(mainFrame.n=="en")
 		{
 			exit.setText("Back");
 			vehicle_color.setText("Choose color of vehicle");
@@ -83,7 +83,7 @@ public class OptionPanel  extends JFrame{
 	JButton vehicle_color;
 	JButton exit;
 	Color color;
-	MainPanel mainPanel;
+	MainFrame mainFrame;
 	
 
 }

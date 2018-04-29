@@ -17,13 +17,13 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
-import newton.GamePanel;
+import newton.GameFrame;
 
-public class MainPanel extends JFrame {
+public class MainFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	
-	public MainPanel() {
+	public MainFrame() {
 		super("Start");
 		menuBar = new JMenuBar();
 
@@ -84,7 +84,7 @@ public class MainPanel extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				new GamePanel(MainPanel.this);
+				new GameFrame(MainFrame.this);
 				
 			}
 		});
@@ -92,7 +92,7 @@ public class MainPanel extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new OptionPanel(MainPanel.this);	
+				new OptionFrame(MainFrame.this);	
 				
 			}
 		});
@@ -100,7 +100,7 @@ public class MainPanel extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new RankingPanel(MainPanel.this);
+				new RankingFrame(MainFrame.this);
 				
 				
 			}
@@ -132,7 +132,7 @@ public class MainPanel extends JFrame {
 	
 	
 	public static void main(String[] args) {
-		new MainPanel();
+		new MainFrame();
 
 	}
 	ActionListener ItemListener=new ActionListener() {

@@ -15,15 +15,15 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import newton.MainPanel;
+import newton.MainFrame;
 
-public class GamePanel extends JFrame {
+public class GameFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
 	
 	
-	public GamePanel(MainPanel main)  {
+	public GameFrame(MainFrame main)  {
 		
 		mPanel=main;
 
@@ -103,7 +103,7 @@ public class GamePanel extends JFrame {
 	/*public void repaint(Graphics g) {
 	}*/
 	
-	MainPanel mPanel;
+	MainFrame mPanel;
 	JPanel rightPanel;
 	JPanel centerPanel;
 	JLabel time;
