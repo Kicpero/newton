@@ -9,8 +9,13 @@ import javax.imageio.ImageIO;
 public class Racket extends AstronomicalObject{
 	protected double  fuel;
 	
+	public Racket() {
+		
+	}
+	
 	public void draw(Graphics2D g) {
-		g.drawImage(image, posX, posY, game.centerPanel);
+		//g.drawImage(image, posX, posY, game.centerPanel);
+		g.drawRect(posX, posY, 30, 30);
 	}
 
 	public void setImage() {
