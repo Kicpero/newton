@@ -30,6 +30,7 @@ public class GameFrame extends JFrame {
 		racket.setX(200);
 		racket.setY(200);
 		
+		
 		mPanel=main;
 
 		// right Panel
@@ -93,7 +94,7 @@ public class GameFrame extends JFrame {
 		// koniec center Panel
 		
 		//razem
-		this.setSize(500, 550);
+		this.setSize(2000,1000);
 		this.setLayout( new BorderLayout());
 		this.add(rightPanel, BorderLayout.NORTH);
 		this.add(centerPanel, BorderLayout.CENTER);
@@ -102,7 +103,19 @@ public class GameFrame extends JFrame {
 		this.setLocationRelativeTo(null);
 		
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		repaint();
 		
+	}
+	public void paintComponent(Graphics2D g) {
+		super.paintComponents(g);
+
+		Racket rac= new Racket();
+		rac.setX(200);
+		rac.setY(200);
+		rac.draw(g);
+		
+		g.drawRect(100, 100, 100, 100);
+
 	}
 	
 	

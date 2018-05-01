@@ -1,5 +1,6 @@
 package newton;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.io.File;
 import java.io.IOException;
@@ -15,7 +16,9 @@ public class Racket extends AstronomicalObject{
 	
 	public void draw(Graphics2D g) {
 		//g.drawImage(image, posX, posY, game.centerPanel);
+		g.setColor(Color.green);
 		g.drawRect(posX, posY, 30, 30);
+		
 	}
 
 	public void setImage() {
