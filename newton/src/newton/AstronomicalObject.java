@@ -15,7 +15,7 @@ public class AstronomicalObject  {
 	protected double forceX;
 	protected double forceY;
 	protected double mass;
-	private String name;//nazwa obrazka musi być taka sama jak nazwa obiektu
+	private String name; //nazwa obrazka musi być taka sama jak nazwa obiektu
 	BufferedImage image;
 	GameFrame game;
 	
