@@ -19,6 +19,7 @@ public class AstronomicalObject  {
 	BufferedImage image;
 	GameFrame game;
 	
+	
 	public AstronomicalObject() {
 		
 	}
