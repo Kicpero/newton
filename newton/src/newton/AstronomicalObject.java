@@ -18,10 +18,6 @@ public class AstronomicalObject  {
 	private String name;//nazwa obrazka musi być taka sama jak nazwa obiektu
 	BufferedImage image;
 	GameFrame game;
-	
-	public AstronomicalObject() {
-		
-	}
 
 	public void setX(int posX) {
 		this.posX = posX;
@@ -74,6 +70,8 @@ public class AstronomicalObject  {
 	public double get_m() {
 		return mass;
 	}
+	
+	
 
 	public void draw(Graphics2D g) {
 		g.drawImage(image, posX, posY, game.centerPanel);

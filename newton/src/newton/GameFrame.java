@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,10 +24,6 @@ public class GameFrame extends JFrame {
 	
 	
 	public GameFrame(MainFrame main)  {
-		
-		Racket racket = new Racket();
-		racket.setX(200);
-		racket.setY(200);
 		
 		mPanel=main;
 
@@ -105,6 +100,8 @@ public class GameFrame extends JFrame {
 		
 	}
 	
+	/*public void repaint(Graphics g) {
+	}*/
 	
 	MainFrame mPanel;
 	JPanel rightPanel;
