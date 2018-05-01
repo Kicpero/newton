@@ -22,6 +22,7 @@ public class GameFrame extends JFrame {
 	
 	
 	
+	
 	public GameFrame(MainFrame main)  {
 		
 		mPanel=main;
