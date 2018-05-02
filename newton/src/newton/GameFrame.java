@@ -97,16 +97,19 @@ public class GameFrame extends JFrame {
 		this.setLocationRelativeTo(null);
 		
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		//DODAWANIE OBIEKTÓW
+		//DODAWANIE OBIEKTÓW I RAKIETY
 		addAstroObject("Slonce",300,300,10,10,10,10,100);
 		addAstroObject("Merkury",250,300,10,10,10,10,10);
 		addAstroObject("Wenus",200,300,10,10,10,10,10);
 		addAstroObject("Ziemie",150,300,10,10,10,10,10);
 		addAstroObject("Mars",100,300,10,10,10,10,10);
 		addAstroObject("Jowisz",50,300,10,10,10,10,20);
-		//URUCHAMIANIE SYMULACJI
+		addRocket("Rakieta",50,300,10,10,10,10,20,100,1,1);
+		
+		//URUCHAMIANIE SYMULACJI (COŚ TU NIE DZIAŁA, CHYBA RUN SIĘ UMIESZCZAŁO)
 		final ScheduledExecutorService exec = Executors.newScheduledThreadPool(2);
-		exec.scheduleAtFixedRate(new Simulation(objects),100, 30, TimeUnit.MILLISECONDS);
+		Simulation sym=new Simulation(objects);
+		//exec.scheduleAtFixedRate(sym.run(),100, 30, TimeUnit.MILLISECONDS);
 	}
 	
 	
@@ -123,6 +126,21 @@ public class GameFrame extends JFrame {
 		objects.add(o);		
 		
 	}
+	public void addRocket(String name,int x, int y, double Vx, double Vy,double fx,double fy,double m, double fuel, double fuel_consump, double fuel_velo) {
+		r = new Rocket();
+		r.set_name(name);
+		r.set_vx(Vx);
+		r.set_vy(Vy);
+		r.setX(x);
+		r.setY(y);
+		r.set_fx(fx);
+		r.set_fy(fy);	
+		r.set_m(m);
+		r.set_fuel(fuel);
+		r.set_consup(fuel_consump);
+		r.set_fuelVelo(fuel_velo);
+		
+	}
 	/*public void repaint(Graphics g) {
 	}*/
 	
@@ -136,5 +154,6 @@ public class GameFrame extends JFrame {
 	JLabel time_to_end;
 	JLabel score_points;
 	JButton exit;
+	Rocket r;
 
 }
