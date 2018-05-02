@@ -109,6 +109,7 @@ public class GameFrame extends JFrame {
 		exec.scheduleAtFixedRate(new Simulation(objects),100, 30, TimeUnit.MILLISECONDS);
 	}
 	
+	
 	public void addAstroObject(String name,int x, int y, double Vx, double Vy,double fx,double fy,double m) {
 		AstronomicalObject o = new AstronomicalObject();
 		o.set_name(name);

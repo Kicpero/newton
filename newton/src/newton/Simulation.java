@@ -9,6 +9,7 @@ public class Simulation implements Runnable {
 		this.objects=objects;
 	}
 	
+	
 	public void run() {
 		int dt=1;
 		double fx=0;

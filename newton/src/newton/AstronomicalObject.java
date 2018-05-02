@@ -47,6 +47,7 @@ public class AstronomicalObject  {
 		this.velocityY = velocityY;
 	}
 
+	
 	public double get_vy() {
 		return velocityY;
 	}
