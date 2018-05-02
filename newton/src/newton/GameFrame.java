@@ -4,32 +4,26 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import newton.MainFrame;
 
 public class GameFrame extends JFrame {
-
+	List<AstronomicalObject> objects = new ArrayList<AstronomicalObject>();
 	private static final long serialVersionUID = 1L;
 	
-	
-	
 	public GameFrame(MainFrame main)  {
-		
-		Racket racket = new Racket();
-		racket.setX(200);
-		racket.setY(200);
-		
 		
 		mPanel=main;
 
@@ -94,28 +88,59 @@ public class GameFrame extends JFrame {
 		// koniec center Panel
 		
 		//razem
-		this.setSize(2000,1000);
+		this.setSize(500, 550);
 		this.setLayout( new BorderLayout());
 		this.add(rightPanel, BorderLayout.NORTH);
 		this.add(centerPanel, BorderLayout.CENTER);
+		
 		
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
 		
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		repaint();
+		//DODAWANIE OBIEKTÓW I RAKIETY
+		addAstroObject("Slonce",300,300,10,10,10,10,100);
+		addAstroObject("Merkury",250,300,10,10,10,10,10);
+		addAstroObject("Wenus",200,300,10,10,10,10,10);
+		addAstroObject("Ziemie",150,300,10,10,10,10,10);
+		addAstroObject("Mars",100,300,10,10,10,10,10);
+		addAstroObject("Jowisz",50,300,10,10,10,10,20);
+		addRocket("Rakieta",50,300,10,10,10,10,20,100,1,1);
+		
+		//URUCHAMIANIE SYMULACJI (COŚ TU NIE DZIAŁA, CHYBA RUN SIĘ UMIESZCZAŁO)
+		final ScheduledExecutorService exec = Executors.newScheduledThreadPool(2);
+		Simulation sym=new Simulation(objects);
+		//exec.scheduleAtFixedRate(sym.run(),100, 30, TimeUnit.MILLISECONDS);
+	}
+	
+	
+	public void addAstroObject(String name,int x, int y, double Vx, double Vy,double fx,double fy,double m) {
+		AstronomicalObject o = new AstronomicalObject();
+		o.set_name(name);
+		o.set_vx(Vx);
+		o.set_vy(Vy);
+		o.setX(x);
+		o.setY(y);
+		o.set_fx(fx);
+		o.set_fy(fy);	
+		o.set_m(m);
+		objects.add(o);		
 		
 	}
-	public void paintComponent(Graphics2D g) {
-		super.paintComponents(g);
-
-		Racket rac= new Racket();
-		rac.setX(200);
-		rac.setY(200);
-		rac.draw(g);
+	public void addRocket(String name,int x, int y, double Vx, double Vy,double fx,double fy,double m, double fuel, double fuel_consump, double fuel_velo) {
+		r = new Rocket();
+		r.set_name(name);
+		r.set_vx(Vx);
+		r.set_vy(Vy);
+		r.setX(x);
+		r.setY(y);
+		r.set_fx(fx);
+		r.set_fy(fy);	
+		r.set_m(m);
+		r.set_fuel(fuel);
+		r.set_consup(fuel_consump);
+		r.set_fuelVelo(fuel_velo);
 		
-		g.drawRect(100, 100, 100, 100);
-
 	}
 	
 	
@@ -129,5 +154,6 @@ public class GameFrame extends JFrame {
 	JLabel time_to_end;
 	JLabel score_points;
 	JButton exit;
+	Rocket r;
 
 }

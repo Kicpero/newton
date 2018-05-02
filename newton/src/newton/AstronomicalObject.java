@@ -15,14 +15,9 @@ public class AstronomicalObject  {
 	protected double forceX;
 	protected double forceY;
 	protected double mass;
-	private String name; //nazwa obrazka musi być taka sama jak nazwa obiektu
+	private String name;//nazwa obrazka musi być taka sama jak nazwa obiektu
 	BufferedImage image;
 	GameFrame game;
-	
-	
-	public AstronomicalObject() {
-		
-	}
 
 	public void setX(int posX) {
 		this.posX = posX;
@@ -52,6 +47,7 @@ public class AstronomicalObject  {
 		this.velocityY = velocityY;
 	}
 
+	
 	public double get_vy() {
 		return velocityY;
 	}
@@ -72,25 +68,21 @@ public class AstronomicalObject  {
 		return forceY;
 	}
 
+	public void set_m(double mass) {
+		this.mass=mass;
+	}
+	
 	public double get_m() {
 		return mass;
 	}
-
-	public void draw(Graphics2D g) {
-		g.drawImage(image, posX, posY, game.centerPanel);
+	
+	public void set_name(String name) {
+		this.name=name;
 	}
-
-	public void setImage() {
-
-		String name_file = name + ".jpg";
-
-		File imageFile = new File(name_file);
-		try {
-			image = ImageIO.read(imageFile);
-		} catch (IOException e) {
-			System.err.println("Blad odczytu grafiki dla obiektu" + name);
-			e.printStackTrace();
-		}
-
+	
+	public String get_name() {
+		return name;
 	}
+	
+	
 }
