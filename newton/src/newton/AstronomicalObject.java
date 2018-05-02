@@ -67,20 +67,29 @@ public class AstronomicalObject  {
 		return forceY;
 	}
 
+	public void set_m(double mass) {
+		this.mass=mass;
+	}
+	
 	public double get_m() {
 		return mass;
 	}
 	
+	public void set_name(String name) {
+		this.name=name;
+	}
 	
-
+	public String get_name() {
+		return name;
+	}
+	
 	public void draw(Graphics2D g) {
 		g.drawImage(image, posX, posY, game.centerPanel);
 	}
 
 	public void setImage() {
 
-		String name_file = name + ".jpg";
-
+		String name_file = name + ".png";
 		File imageFile = new File(name_file);
 		try {
 			image = ImageIO.read(imageFile);

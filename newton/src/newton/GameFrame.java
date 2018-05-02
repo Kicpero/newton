@@ -7,21 +7,21 @@ import java.awt.FlowLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import newton.MainFrame;
 
 public class GameFrame extends JFrame {
-
+	List<AstronomicalObject> objects = new ArrayList<AstronomicalObject>();
 	private static final long serialVersionUID = 1L;
-	
-	
-	
 	
 	public GameFrame(MainFrame main)  {
 		
@@ -97,9 +97,31 @@ public class GameFrame extends JFrame {
 		this.setLocationRelativeTo(null);
 		
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		
+		//DODAWANIE OBIEKTÓW
+		addAstroObject("Slonce",300,300,10,10,10,10,100);
+		addAstroObject("Merkury",250,300,10,10,10,10,10);
+		addAstroObject("Wenus",200,300,10,10,10,10,10);
+		addAstroObject("Ziemie",150,300,10,10,10,10,10);
+		addAstroObject("Mars",100,300,10,10,10,10,10);
+		addAstroObject("Jowisz",50,300,10,10,10,10,20);
+		//URUCHAMIANIE SYMULACJI
+		final ScheduledExecutorService exec = Executors.newScheduledThreadPool(2);
+		exec.scheduleAtFixedRate(new Simulation(objects),100, 30, TimeUnit.MILLISECONDS);
 	}
 	
+	public void addAstroObject(String name,int x, int y, double Vx, double Vy,double fx,double fy,double m) {
+		AstronomicalObject o = new AstronomicalObject();
+		o.set_name(name);
+		o.set_vx(Vx);
+		o.set_vy(Vy);
+		o.setX(x);
+		o.setY(y);
+		o.set_fx(fx);
+		o.set_fy(fy);	
+		o.set_m(m);
+		objects.add(o);		
+		
+	}
 	/*public void repaint(Graphics g) {
 	}*/
 	
