@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -84,7 +83,6 @@ public class GameFrame extends JFrame {
 		imageIcon = new ImageIcon(newimg);  // transform it back
 		centerPanel.add(new JLabel(imageIcon));
 		
-		
 		// koniec center Panel
 		
 		//razem
@@ -92,6 +90,7 @@ public class GameFrame extends JFrame {
 		this.setLayout( new BorderLayout());
 		this.add(rightPanel, BorderLayout.NORTH);
 		this.add(centerPanel, BorderLayout.CENTER);
+		
 		
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
@@ -110,8 +109,7 @@ public class GameFrame extends JFrame {
 		final ScheduledExecutorService exec = Executors.newScheduledThreadPool(2);
 		Simulation sym=new Simulation(objects);
 		//exec.scheduleAtFixedRate(sym.run(),100, 30, TimeUnit.MILLISECONDS);
-	}
-	
+	}	
 	
 	public void addAstroObject(String name,int x, int y, double Vx, double Vy,double fx,double fy,double m) {
 		AstronomicalObject o = new AstronomicalObject();

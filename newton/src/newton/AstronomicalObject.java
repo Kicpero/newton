@@ -98,6 +98,5 @@ public class AstronomicalObject  {
 			System.err.println("Blad odczytu grafiki dla obiektu" + name);
 			e.printStackTrace();
 		}
-
 	}
 }

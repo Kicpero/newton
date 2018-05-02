@@ -85,6 +85,7 @@ public class MainFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				new GameFrame(MainFrame.this);
+			
 				
 			}
 		});

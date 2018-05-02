@@ -10,6 +10,11 @@ public class Rocket extends AstronomicalObject{
 	protected double  fuel;//paliwo
 	protected double  fuel_consumption;//zurzycie paliwa kg/s
 	protected double  fuel_velocity;//prędkość gazów wylotowych względem rakiety
+
+	protected double course_x;
+	protected double course_y;
+	//kierunki zwrotu rakiety
+	
 	public void set_fuel(double fuel) {
 		this.fuel = fuel;
 	}
@@ -52,5 +57,4 @@ public class Rocket extends AstronomicalObject{
 		}
 
 	}
-
 }
