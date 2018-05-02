@@ -26,6 +26,7 @@ public class Draw extends JPanel {
 			String name_file = object.get_name() + ".png";
 			File imageFile = new File(name_file);
 			try {
+
 				image = ImageIO.read(imageFile);
 				images.add(image);
 				System.out.println("Dodano"+i);
