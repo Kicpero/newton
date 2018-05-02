@@ -2,56 +2,52 @@ package newton;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
-
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class Draw extends JPanel {
-	AstronomicalObject object;
+	private static final long serialVersionUID = 1L;
 	GameFrame game;
 	BufferedImage image;
 	
 	ArrayList<BufferedImage> images= new ArrayList<BufferedImage>();
 	String [] names= {"earth", "jupiter", "mars", "mercury", "neptune", "pluto"};
 
+	public Draw(){
+		super();
+	}
 	
 	public void addImages() {
 		for(int i =0; i<names.length; i++) {
-			object.set_name(names[i]);
-			String name_file = object.get_name() + ".png";
-			File imageFile = new File(name_file);
+			String name_file = names[i] + ".png";
+			URL sciezka = getClass().getResource(name_file);
 			try {
 
-				image = ImageIO.read(imageFile);
+				image = ImageIO.read(sciezka);
 				images.add(image);
 				System.out.println("Dodano"+i);
 			} catch (IOException e) {
-				System.err.println("Blad odczytu grafiki dla obiektu" + object.get_name());
+				System.err.println("Blad odczytu grafiki dla obiektu" + names[i]);
 				e.printStackTrace();
 			}
 			
 		}
 	}
-	public void paint(Graphics2D g) {
-		
+	
+	public void paint(Graphics g) {
 		for(int i = 0; i<images.size(); i++) {
-			addImages();
-			g.setColor(Color.BLUE);
-			g.drawRect(200, 200, 100, 100);
-			g.drawImage(images.get(i), 100+10*i, 100+10*i, 100+10*i, 100+10*i, game.centerPanel);
+			g.drawImage(images.get(i), 0+100*i, 0+100*i, null);
 		}
 		
 	}
 	
-	public void paintComponent(Graphics2D g) {
-		super.paintComponent(g);
-
-		game.centerPanel.paint(g);
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);	
+		paint(g);
 	}
 	
 

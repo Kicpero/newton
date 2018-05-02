@@ -4,14 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -66,36 +64,36 @@ public class GameFrame extends JFrame {
 		rightPanel.add(points);
 		rightPanel.add(score_points);
 		rightPanel.add(exit);
-		rightPanel.setVisible(true);
-		rightPanel.setPreferredSize(new Dimension(500, 30));
-		rightPanel.setBackground(Color.WHITE);
-		
+		rightPanel.setPreferredSize(new Dimension(500, 40));
+		rightPanel.setBackground(Color.WHITE);	
 		// koniec right Panel
 		
 		// center Panel
 		
-		centerPanel = new JPanel();
-		centerPanel.setSize(500, 500);
-		java.net.URL im = getClass().getResource("background2.jpg");//path to image
+		centerPanel=new Draw();
+		centerPanel.setBackground(Color.BLACK);//TO POWINNO DZIAŁAĆ XD
+		centerPanel.addImages();
+		
+		/*java.net.URL im = getClass().getResource("background2.jpg");//path to image
 		ImageIcon imageIcon = new ImageIcon(im); // load the image to a imageIcon
 		Image image = imageIcon.getImage(); // transform it 
 		Image newimg = image.getScaledInstance(centerPanel.getWidth(), centerPanel.getHeight(),java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
 		imageIcon = new ImageIcon(newimg);  // transform it back
-		centerPanel.add(new JLabel(imageIcon));
+		centerPanel.add(new JLabel(imageIcon));*/
 		
+		//centerPanel.repaint();
 		// koniec center Panel
 		
 		//razem
-		this.setSize(500, 550);
-		this.setLayout( new BorderLayout());
+		this.setSize(900, 600);
+		this.setLayout(new BorderLayout());
 		this.add(rightPanel, BorderLayout.NORTH);
 		this.add(centerPanel, BorderLayout.CENTER);
 		
-		
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
-		
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		
 		//DODAWANIE OBIEKTÓW I RAKIETY
 		addAstroObject("Slonce",300,300,10,10,10,10,100);
 		addAstroObject("Merkury",250,300,10,10,10,10,10);
@@ -124,6 +122,7 @@ public class GameFrame extends JFrame {
 		objects.add(o);		
 		
 	}
+	
 	public void addRocket(String name,int x, int y, double Vx, double Vy,double fx,double fy,double m, double fuel, double fuel_consump, double fuel_velo) {
 		r = new Rocket();
 		r.set_name(name);
@@ -139,12 +138,10 @@ public class GameFrame extends JFrame {
 		r.set_fuelVelo(fuel_velo);
 		
 	}
-	/*public void repaint(Graphics g) {
-	}*/
 	
 	MainFrame mPanel;
 	JPanel rightPanel;
-	JPanel centerPanel;
+	Draw centerPanel;
 	JLabel time;
 	JLabel points;
 	JLabel fuel;
