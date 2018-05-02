@@ -68,12 +68,12 @@ public class Simulation implements Runnable {
 						fx+=G*((rocket.get_m()+rocket.get_fuel())*objects.get(j).get_m()*(rocket.getX()-objects.get(j).getX()))/tmp1;
 						fy+=G*(rocket.get_m()*objects.get(j).get_m()*(rocket.getY()-objects.get(j).getY()))/tmp1;
 				}
+			//DOLICZENIE SIŁY CIOŁKOWSKIEGO
+			//JESZCZE NIE JEST ROZŁOŻONA BO NIE WIEM JAK ZWRÓCIĆ JEJ KIERUNEK
+			fx+=(rocket.get_fuelVelo()*rocket.get_consup())/(rocket.get_m()+rocket.get_consup()*dt)*(rocket.get_m()+rocket.get_fuel());
+			fy+=(rocket.get_fuelVelo()*rocket.get_consup())/(rocket.get_m()+rocket.get_consup()*dt)*(rocket.get_m()+rocket.get_fuel());
 			rocket.set_fx(fx);
 			rocket.set_fy(fy);
-			fx=0;
-			fy=0;
-			//DOLICZENIE SIŁY CIOŁKOWSKIEGO
-			
 			//LICZENIE X, Y, Vx, Vy
 				rocket.set_vx(rocket.get_vx()+rocket.get_fx()*dt/(rocket.get_m()+rocket.get_fuel()));
 				rocket.set_vy(rocket.get_vy()+rocket.get_fy()*dt/(rocket.get_m()+rocket.get_fuel()));
