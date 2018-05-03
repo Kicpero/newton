@@ -25,16 +25,16 @@ public class Draw extends JPanel {
 		this.setBackground(Color.red);
 		this.setVisible(true);
 		addImages();
-		addAstroObject("Slonce",300,300,40,10,30,10,10,100);
-		addAstroObject("Merkury",250,300,40,10,30,10,10,10);
-		addAstroObject("Wenus",200,300,40,10,30,10,10,10);
-		addAstroObject("Ziemie",150,300,40,10,30,10,10,10);
-		addAstroObject("Mars",100,300,40,10,30,10,10,10);
-		addAstroObject("Jowisz",50,300,40,10,30,10,10,20);
-		addAstroObject("Neptun",350,300,40,10,30,10,10,20);
-		addAstroObject("Pluton",400,300,40,10,30,10,10,20);
-		addAstroObject("Saturn",450,300,40,10,30,10,10,20);
-		addAstroObject("Uran",500,300,40,10,30,10,10,20);
+		addAstroObject("Slonce",300,300,0,0,200,1000);
+		addAstroObject("Merkury",250,300,0,10,30,10);
+		addAstroObject("Wenus",200,300,0,10,30,10);
+		addAstroObject("Ziemie",150,300,0,10,30,10);
+		addAstroObject("Mars",100,300,0,0,30,10);
+		addAstroObject("Jowisz",50,300,0,10,30,20);
+		addAstroObject("Neptun",350,300,0,10,30,20);
+		addAstroObject("Pluton",400,300,0,10,30,20);
+		addAstroObject("Saturn",450,300,0,10,30,20);
+		addAstroObject("Uran",500,300,0,10,30,20);
 	}
 
 	public void addImages() {
@@ -53,8 +53,9 @@ public class Draw extends JPanel {
 	}
 
 	public void paint(Graphics g) {
+		g.setColor(Color.black);
+	    g.fillRect(0,0,900,700);
 		for (int i = 0; i < images.size(); i++) {
-			
 			int x= objects.get(i).getX();
 			int y=objects.get(i).getY();
 			int r=objects.get(i).get_r();
@@ -62,16 +63,14 @@ public class Draw extends JPanel {
 		}
 
 	}
-	public void addAstroObject(String name,int x, int y, double Vx, double Vy,int r,double fx,double fy,double m) {
+	public void addAstroObject(String name,int x, int y, double Vx, double Vy,int r,double m) {
 		AstronomicalObject o = new AstronomicalObject();
 		o.set_name(name);
 		o.set_vx(Vx);
 		o.set_vy(Vy);
 		o.setX(x);
 		o.setY(y);
-		o.set_r(r);
-		o.set_fx(fx);
-		o.set_fy(fy);	
+		o.set_r(r);	
 		o.set_m(m);
 		objects.add(o);		
 		

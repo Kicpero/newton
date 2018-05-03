@@ -14,7 +14,6 @@ import newton.MainFrame;
 
 public class GameFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
-	
 	public GameFrame(MainFrame main)  {
 		
 		mPanel=main;
@@ -65,7 +64,10 @@ public class GameFrame extends JFrame {
 		
 		// center Panel
 		
-		centerPanel=new Draw();
+		//centerPanel=new Draw();
+		Move move=new Move();
+		move.rozpocznijRuch();
+		//move.rozpocznijRuch();
 		//centerPanel.setBackground(Color.RED);
 		//centerPanel.addImages();
 		/*java.net.URL im = getClass().getResource("background2.jpg");//path to image
@@ -83,17 +85,12 @@ public class GameFrame extends JFrame {
 		this.setSize(900, 600);
 		this.setLayout(new BorderLayout());
 		this.add(rightPanel, BorderLayout.NORTH);
-		this.add(centerPanel, BorderLayout.CENTER);
-		
+		this.add(move.draw, BorderLayout.CENTER);
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
 		addRocket("Rakieta",50,300,10,10,10,10,20,100,1,1);
-		
-		//URUCHAMIANIE SYMULACJI (COŚ TU NIE DZIAŁA, CHYBA RUN SIĘ UMIESZCZAŁO)
-		Move move=new Move();
-		move.rozpocznijRuch();
 	}	
 	
 	public void addRocket(String name,int x, int y, double Vx, double Vy,double fx,double fy,double m, double fuel, double fuel_consump, double fuel_velo) {

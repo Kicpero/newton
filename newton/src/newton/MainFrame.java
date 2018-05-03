@@ -16,7 +16,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
-
 import newton.GameFrame;
 
 public class MainFrame extends JFrame {

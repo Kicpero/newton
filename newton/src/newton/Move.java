@@ -6,27 +6,33 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import javax.swing.SwingUtilities;
+
 public class Move {
-	Draw draw=new Draw();
+	Draw draw;
 	Simulation sym;
+	
 	void rozpocznijRuch() {
+		
 
 		ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 		scheduler.scheduleAtFixedRate((new Runnable() {
 			public void run() {
-				System.out.println(draw.objects.size());
+				
 				sym=new Simulation(draw.objects);
 				sym.run();
-				System.out.println(draw.objects.size());
 				for (int i = 0; i<draw.objects.size();i++) {
-					draw.updateAstroObject(sym.getAstroObject());
+					//draw.updateAstroObject(sym.getAstroObject());
 					draw.repaint();
 				}
 			}
 
-		}), 100, 30, TimeUnit.MILLISECONDS);
+		}), 10, 50, TimeUnit.MILLISECONDS);
 		
 
+	}
+	public Move() {
+		draw=new Draw();
 	}
 
 }
