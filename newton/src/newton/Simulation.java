@@ -4,20 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Simulation implements Runnable {
-	List<AstronomicalObject> objects = new ArrayList<AstronomicalObject>();
+	ArrayList<AstronomicalObject> objects = new ArrayList<AstronomicalObject>();
 	Rocket rocket = new Rocket();
 	boolean log = true;
 
-	public Simulation(List<AstronomicalObject> objects) {
+	public Simulation(ArrayList<AstronomicalObject> objects) {
 		this.objects = objects;
 		this.log = true;// jeśli wartość prawdziwa wykonuje dla obiektu astronomicznego
 		
 	}
 
-	public Simulation(Rocket rocket, List<AstronomicalObject> objects) {
+	public Simulation(Rocket rocket, ArrayList<AstronomicalObject> objects) {
 		this.rocket = rocket;
 		this.objects = objects;
 		this.log = false;// jeśli wartość prawdziwa wykonuje dla rakiety
+	}
+	
+	public ArrayList<AstronomicalObject> getAstroObject(){
+		return this.objects;
 	}
 
 	public void run() {
@@ -82,8 +86,6 @@ public class Simulation implements Runnable {
 			rocket.set_vy(rocket.get_vy() + rocket.get_fy() * dt / (rocket.get_m() + rocket.get_fuel()));
 			rocket.setX((int) (rocket.getX() + rocket.get_vx() * dt));
 			rocket.setY((int) (rocket.getY() + rocket.get_vy() * dt));
-
-			// RYSOWANIE
 		}
 	}
 }

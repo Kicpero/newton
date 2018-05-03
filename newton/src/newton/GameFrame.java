@@ -6,10 +6,6 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -17,7 +13,6 @@ import javax.swing.JPanel;
 import newton.MainFrame;
 
 public class GameFrame extends JFrame {
-	List<AstronomicalObject> objects = new ArrayList<AstronomicalObject>();
 	private static final long serialVersionUID = 1L;
 	
 	public GameFrame(MainFrame main)  {
@@ -97,9 +92,8 @@ public class GameFrame extends JFrame {
 		addRocket("Rakieta",50,300,10,10,10,10,20,100,1,1);
 		
 		//URUCHAMIANIE SYMULACJI (COŚ TU NIE DZIAŁA, CHYBA RUN SIĘ UMIESZCZAŁO)
-		final ScheduledExecutorService exec = Executors.newScheduledThreadPool(2);
-		Simulation sym=new Simulation(objects);
-		//exec.scheduleAtFixedRate(sym.run(),100, 30, TimeUnit.MILLISECONDS);
+		Move move=new Move();
+		move.rozpocznijRuch();
 	}	
 	
 	public void addRocket(String name,int x, int y, double Vx, double Vy,double fx,double fy,double m, double fuel, double fuel_consump, double fuel_velo) {

@@ -16,7 +16,7 @@ public class Draw extends JPanel {
 	BufferedImage image;
 	AstronomicalObject object;
 	
-	List<AstronomicalObject> objects = new ArrayList<AstronomicalObject>();
+	ArrayList<AstronomicalObject> objects = new ArrayList<AstronomicalObject>();
 	ArrayList<BufferedImage> images = new ArrayList<BufferedImage>();
 	String[] names = { "sun", "mercury", "venus", "earth", "mars", "jupiter" , "neptune", "pluto", "saturn", "uranus"};
 
@@ -75,6 +75,16 @@ public class Draw extends JPanel {
 		o.set_m(m);
 		objects.add(o);		
 		
+	}
+	public void updateAstroObject(ArrayList<AstronomicalObject> objects) {
+		for(int i=0;i<this.objects.size();i++) {
+			this.objects.get(i).set_fx(objects.get(i).get_fx());
+			this.objects.get(i).set_fy(objects.get(i).get_fy());
+			this.objects.get(i).set_vx(objects.get(i).get_vx());
+			this.objects.get(i).set_vy(objects.get(i).get_vy());
+			this.objects.get(i).setX(objects.get(i).getX());
+			this.objects.get(i).set_fx(objects.get(i).getY());
+		}
 	}
 
 	public void paintComponent(Graphics g) {
