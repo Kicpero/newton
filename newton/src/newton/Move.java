@@ -22,7 +22,7 @@ public class Move {
 
 				for (int i = 0; i<draw.objects.size();i++) {
 
-					
+					draw.repaint();
 				
 					
 
