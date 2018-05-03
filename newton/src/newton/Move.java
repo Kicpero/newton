@@ -17,6 +17,7 @@ public class Move {
 		scheduler.scheduleAtFixedRate((new Runnable() {
 			public void run() {
 				
+				
 				sym=new Simulation(draw.objects);
 				sym.run();
 				for (int i = 0; i<draw.objects.size();i++) {
