@@ -34,22 +34,11 @@ public class Simulation implements Runnable {
 		double tmp1 = 0;
 		double tmp2 = 0;
 		double tmp3 = 0;
-		//--------------------------
-		System.out.println("PRZED");
-		for(int i=0;i<objects.size();i++) {
-		System.out.println("OBIEKT"+i);
-		System.out.println(objects.get(i).get_fx());
-		System.out.println(objects.get(i).get_fy());
-		System.out.println(objects.get(i).get_vx());
-		System.out.println(objects.get(i).get_vy());
-		System.out.println(objects.get(i).getX());
-		System.out.println(objects.get(i).getY());
-		}
-		//--------------------------
+		
 		if (log == true) {
 			// LICZENIE SIŁY
 			for (int i = 0; i < objects.size(); i++) {
-				System.out.println("CIAŁO NUMER "+i+" ODDZIALUJE Z:");
+				//System.out.println("CIAŁO NUMER "+i+" ODDZIALUJE Z:");
 				for (int j = 0; j < objects.size(); j++) {
 					if (i != j) {
 						tmp1 = Math.pow((objects.get(i).getX() - objects.get(j).getX()), 2);
@@ -59,11 +48,11 @@ public class Simulation implements Runnable {
 
 						fx += G * (objects.get(i).get_m() * objects.get(j).get_m()* (objects.get(i).getX() - objects.get(j).getX())) / tmp1;
 						fy += G * (objects.get(i).get_m() * objects.get(j).get_m()* (objects.get(i).getY() - objects.get(j).getY())) / tmp1;
-						System.out.println(j+". SILA FX: "+fx);
-						System.out.println(j+". SILA FY: "+fx);
+						//System.out.println(j+". SILA FX: "+fx);
+						//System.out.println(j+". SILA FY: "+fx);
 					}
 				}
-				System.out.println(i+". "+fx);
+				//System.out.println(i+". "+fx);
 				objects.get(i).set_fx(fx);
 				objects.get(i).set_fy(fy);
 				fx = 0;
@@ -104,16 +93,6 @@ public class Simulation implements Runnable {
 			rocket.setX((int) (rocket.getX() + rocket.get_vx() * dt));
 			rocket.setY((int) (rocket.getY() + rocket.get_vy() * dt));
 		}
-		//--------------------------
-		System.out.println("PO");
-		for(int i=0;i<objects.size();i++) {
-		System.out.println(objects.get(i).get_fx());
-		System.out.println(objects.get(i).get_fy());
-		System.out.println(objects.get(i).get_vx());
-		System.out.println(objects.get(i).get_vy());
-		System.out.println(objects.get(i).getX());
-		System.out.println(objects.get(i).getY());
-		}
-		//--------------------------
+		
 	}
 }

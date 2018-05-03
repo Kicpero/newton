@@ -64,21 +64,8 @@ public class GameFrame extends JFrame {
 		
 		// center Panel
 		
-		//centerPanel=new Draw();
 		Move move=new Move();
-		move.rozpocznijRuch();
-		//move.rozpocznijRuch();
-		//centerPanel.setBackground(Color.RED);
-		//centerPanel.addImages();
-		/*java.net.URL im = getClass().getResource("background2.jpg");//path to image
-		ImageIcon imageIcon = new ImageIcon(im); // load the image to a imageIcon
-		Image image = imageIcon.getImage(); // transform it 
-		Image newimg = image.getScaledInstance(centerPanel.getWidth(), centerPanel.getHeight(),java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
-		imageIcon = new ImageIcon(newimg);  // transform it back
-		centerPanel.add(new JLabel(imageIcon));*/
 		
-		//centerPanel.repaint();
-		//centerPanel.getBackground();
 		// koniec center Panel
 		
 		//razem
@@ -89,25 +76,9 @@ public class GameFrame extends JFrame {
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		
-		addRocket("Rakieta",50,300,10,10,10,10,20,100,1,1);
 	}	
 	
-	public void addRocket(String name,int x, int y, double Vx, double Vy,double fx,double fy,double m, double fuel, double fuel_consump, double fuel_velo) {
-		r = new Rocket();
-		r.set_name(name);
-		r.set_vx(Vx);
-		r.set_vy(Vy);
-		r.setX(x);
-		r.setY(y);
-		r.set_fx(fx);
-		r.set_fy(fy);	
-		r.set_m(m);
-		r.set_fuel(fuel);
-		r.set_consup(fuel_consump);
-		r.set_fuelVelo(fuel_velo);
-		
-	}
+	
 	
 	MainFrame mPanel;
 	JPanel rightPanel;
