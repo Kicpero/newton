@@ -6,11 +6,6 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,7 +13,6 @@ import javax.swing.JPanel;
 import newton.MainFrame;
 
 public class GameFrame extends JFrame {
-	List<AstronomicalObject> objects = new ArrayList<AstronomicalObject>();
 	private static final long serialVersionUID = 1L;
 	
 	public GameFrame(MainFrame main)  {
@@ -71,10 +65,11 @@ public class GameFrame extends JFrame {
 		
 		// center Panel
 		
-		centerPanel=new Draw();
+		//centerPanel=new Draw();
+		Move move=new Move();
+		//move.rozpocznijRuch();
 		//centerPanel.setBackground(Color.RED);
 		//centerPanel.addImages();
-		
 		/*java.net.URL im = getClass().getResource("background2.jpg");//path to image
 		ImageIcon imageIcon = new ImageIcon(im); // load the image to a imageIcon
 		Image image = imageIcon.getImage(); // transform it 
@@ -88,10 +83,9 @@ public class GameFrame extends JFrame {
 		
 		//razem
 		this.setSize(900, 600);
-		
 		this.setLayout(new BorderLayout());
 		this.add(rightPanel, BorderLayout.NORTH);
-		this.add(centerPanel, BorderLayout.CENTER);
+		this.add(move.draw, BorderLayout.CENTER);
 		
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
@@ -100,12 +94,8 @@ public class GameFrame extends JFrame {
 		addRocket("Rakieta",50,300,10,10,10,10,20,100,1,1);
 		
 		//URUCHAMIANIE SYMULACJI (COŚ TU NIE DZIAŁA, CHYBA RUN SIĘ UMIESZCZAŁO)
-		final ScheduledExecutorService exec = Executors.newScheduledThreadPool(2);
-		Simulation sym=new Simulation(objects);
-		//exec.scheduleAtFixedRate(sym.run(),100, 30, TimeUnit.MILLISECONDS);
+		
 	}	
-	
-	
 	
 	public void addRocket(String name,int x, int y, double Vx, double Vy,double fx,double fy,double m, double fuel, double fuel_consump, double fuel_velo) {
 		r = new Rocket();

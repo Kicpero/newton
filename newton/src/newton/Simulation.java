@@ -4,23 +4,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Simulation implements Runnable {
-	List<AstronomicalObject> objects = new ArrayList<AstronomicalObject>();
+	ArrayList<AstronomicalObject> objects = new ArrayList<AstronomicalObject>();
 	Rocket rocket = new Rocket();
 	boolean log = true;
 
-	public Simulation(List<AstronomicalObject> objects) {
+	public Simulation(ArrayList<AstronomicalObject> objects) {
 		this.objects = objects;
 		this.log = true;// jeśli wartość prawdziwa wykonuje dla obiektu astronomicznego
+		//System.out.println("DZIAŁA");
 		
 	}
 
-	public Simulation(Rocket rocket, List<AstronomicalObject> objects) {
+	public Simulation(Rocket rocket, ArrayList<AstronomicalObject> objects) {
 		this.rocket = rocket;
 		this.objects = objects;
 		this.log = false;// jeśli wartość prawdziwa wykonuje dla rakiety
 	}
+	
+	public ArrayList<AstronomicalObject> getAstroObject(){
+		return this.objects;
+	}
 
 	public void run() {
+		
 		int dt = 1;
 		double fx = 0;
 		double fy = 0;
@@ -28,22 +34,36 @@ public class Simulation implements Runnable {
 		double tmp1 = 0;
 		double tmp2 = 0;
 		double tmp3 = 0;
-		if (log = true) {
+		//--------------------------
+		System.out.println("PRZED");
+		for(int i=0;i<objects.size();i++) {
+		System.out.println("OBIEKT"+i);
+		System.out.println(objects.get(i).get_fx());
+		System.out.println(objects.get(i).get_fy());
+		System.out.println(objects.get(i).get_vx());
+		System.out.println(objects.get(i).get_vy());
+		System.out.println(objects.get(i).getX());
+		System.out.println(objects.get(i).getY());
+		}
+		//--------------------------
+		if (log == true) {
 			// LICZENIE SIŁY
 			for (int i = 0; i < objects.size(); i++) {
-				for (int j = 0; i < objects.size(); i++) {
+				System.out.println("CIAŁO NUMER "+i+" ODDZIALUJE Z:");
+				for (int j = 0; j < objects.size(); j++) {
 					if (i != j) {
 						tmp1 = Math.pow((objects.get(i).getX() - objects.get(j).getX()), 2);
 						tmp2 = Math.pow((objects.get(i).getY() - objects.get(j).getY()), 2);
 						tmp3 = Math.sqrt(tmp1 + tmp2);
 						tmp1 = Math.pow(tmp3, 3);
 
-						fx += G * (objects.get(i).get_m() * objects.get(j).get_m()
-								* (objects.get(i).getX() - objects.get(j).getX())) / tmp1;
-						fy += G * (objects.get(i).get_m() * objects.get(j).get_m()
-								* (objects.get(i).getY() - objects.get(j).getY())) / tmp1;
+						fx += G * (objects.get(i).get_m() * objects.get(j).get_m()* (objects.get(i).getX() - objects.get(j).getX())) / tmp1;
+						fy += G * (objects.get(i).get_m() * objects.get(j).get_m()* (objects.get(i).getY() - objects.get(j).getY())) / tmp1;
+						System.out.println(j+". SILA FX: "+fx);
+						System.out.println(j+". SILA FY: "+fx);
 					}
 				}
+				System.out.println(i+". "+fx);
 				objects.get(i).set_fx(fx);
 				objects.get(i).set_fy(fy);
 				fx = 0;
@@ -58,7 +78,8 @@ public class Simulation implements Runnable {
 			}
 
 			
-		} else {
+		} 
+		else {
 			// LICZENIE SIŁY
 			for (int j = 0; j < objects.size(); j++) {
 				tmp1 = Math.pow((rocket.getX() - objects.get(j).getX()), 2);
@@ -82,9 +103,17 @@ public class Simulation implements Runnable {
 			rocket.set_vy(rocket.get_vy() + rocket.get_fy() * dt / (rocket.get_m() + rocket.get_fuel()));
 			rocket.setX((int) (rocket.getX() + rocket.get_vx() * dt));
 			rocket.setY((int) (rocket.getY() + rocket.get_vy() * dt));
-
-			// RYSOWANIE
 		}
+		//--------------------------
+		System.out.println("PO");
+		for(int i=0;i<objects.size();i++) {
+		System.out.println(objects.get(i).get_fx());
+		System.out.println(objects.get(i).get_fy());
+		System.out.println(objects.get(i).get_vx());
+		System.out.println(objects.get(i).get_vy());
+		System.out.println(objects.get(i).getX());
+		System.out.println(objects.get(i).getY());
+		}
+		//--------------------------
 	}
-	
 }

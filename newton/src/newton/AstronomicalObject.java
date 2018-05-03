@@ -93,5 +93,19 @@ public class AstronomicalObject  {
 		return name;
 	}
 	
-	
+	public void draw(Graphics2D g) {
+		g.drawImage(image, posX, posY, game.centerPanel);
+	}
+
+	public void setImage() {
+
+		String name_file = name + ".png";
+		File imageFile = new File(name_file);
+		try {
+			image = ImageIO.read(imageFile);
+		} catch (IOException e) {
+			System.err.println("Blad odczytu grafiki dla obiektu" + name);
+			e.printStackTrace();
+		}
+	}
 }
