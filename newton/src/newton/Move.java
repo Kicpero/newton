@@ -6,7 +6,10 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 public class Move {
 	Draw draw;
-	Simulation sym;
+	GameFrame game;
+	Simulation symA;//symulacja dla obiektów
+	Simulation symR;//symulacja rakiety
+	
 	
 	void rozpocznijRuch() {
 		
@@ -17,16 +20,20 @@ public class Move {
 				
 				
 				
-				sym=new Simulation(draw.objects);
-				sym.run();
+				symA=new Simulation(draw.objects);
+				symA.run();
 				for (int i = 0; i<draw.objects.size();i++) {
-					draw.updateAstroObject(sym.getAstroObject());
 					
 					draw.repaint();
+					
 				}
+				symR=new Simulation(draw.rocket, draw.objects);
+				symR.run();
+				draw.repaint();
+				
 			}
 
-		}), 3,25,MILLISECONDS);
+		}), 3,60,MILLISECONDS);
 		
 
 	}

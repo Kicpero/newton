@@ -53,22 +53,5 @@ public class Rocket extends AstronomicalObject{
 		return course_y;
 	}
 	
-	public void draw(Graphics2D g) {
-		//g.drawImage(image, posX, posY, game.centerPanel);
-		g.drawRect(posX, posY, 30, 30);
-	}
-
-	public void setImage() {
-
-		String name_file = "racket.png";
-
-		File imageFile = new File(name_file);
-		try {
-			image = ImageIO.read(imageFile);
-		} catch (IOException e) {
-			System.err.println("Blad odczytu grafiki dla rakiety");
-			e.printStackTrace();
-		}
-
-	}
+	
 }
