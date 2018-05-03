@@ -11,6 +11,7 @@ public class Simulation implements Runnable {
 	public Simulation(List<AstronomicalObject> objects) {
 		this.objects = objects;
 		this.log = true;// jeśli wartość prawdziwa wykonuje dla obiektu astronomicznego
+		
 	}
 
 	public Simulation(Rocket rocket, List<AstronomicalObject> objects) {
@@ -56,7 +57,7 @@ public class Simulation implements Runnable {
 				objects.get(i).setY((int) (objects.get(i).getY() + objects.get(i).get_vy() * dt));
 			}
 
-			// RYSOWANIE
+			
 		} else {
 			// LICZENIE SIŁY
 			for (int j = 0; j < objects.size(); j++) {

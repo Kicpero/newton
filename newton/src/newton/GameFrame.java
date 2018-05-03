@@ -71,9 +71,8 @@ public class GameFrame extends JFrame {
 		// center Panel
 		
 		centerPanel=new Draw();
-		centerPanel.setBackground(Color.BLACK);//TO POWINNO DZIAŁAĆ XD
-		centerPanel.addImages();
-		
+		//centerPanel.setBackground(Color.RED);
+		//centerPanel.addImages();
 		/*java.net.URL im = getClass().getResource("background2.jpg");//path to image
 		ImageIcon imageIcon = new ImageIcon(im); // load the image to a imageIcon
 		Image image = imageIcon.getImage(); // transform it 
@@ -82,6 +81,7 @@ public class GameFrame extends JFrame {
 		centerPanel.add(new JLabel(imageIcon));*/
 		
 		//centerPanel.repaint();
+		//centerPanel.getBackground();
 		// koniec center Panel
 		
 		//razem
@@ -94,13 +94,6 @@ public class GameFrame extends JFrame {
 		this.setLocationRelativeTo(null);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
-		//DODAWANIE OBIEKTÓW I RAKIETY
-		addAstroObject("Slonce",300,300,10,10,10,10,100);
-		addAstroObject("Merkury",250,300,10,10,10,10,10);
-		addAstroObject("Wenus",200,300,10,10,10,10,10);
-		addAstroObject("Ziemie",150,300,10,10,10,10,10);
-		addAstroObject("Mars",100,300,10,10,10,10,10);
-		addAstroObject("Jowisz",50,300,10,10,10,10,20);
 		addRocket("Rakieta",50,300,10,10,10,10,20,100,1,1);
 		
 		//URUCHAMIANIE SYMULACJI (COŚ TU NIE DZIAŁA, CHYBA RUN SIĘ UMIESZCZAŁO)
@@ -108,20 +101,6 @@ public class GameFrame extends JFrame {
 		Simulation sym=new Simulation(objects);
 		//exec.scheduleAtFixedRate(sym.run(),100, 30, TimeUnit.MILLISECONDS);
 	}	
-	
-	public void addAstroObject(String name,int x, int y, double Vx, double Vy,double fx,double fy,double m) {
-		AstronomicalObject o = new AstronomicalObject();
-		o.set_name(name);
-		o.set_vx(Vx);
-		o.set_vy(Vy);
-		o.setX(x);
-		o.setY(y);
-		o.set_fx(fx);
-		o.set_fy(fy);	
-		o.set_m(m);
-		objects.add(o);		
-		
-	}
 	
 	public void addRocket(String name,int x, int y, double Vx, double Vy,double fx,double fy,double m, double fuel, double fuel_consump, double fuel_velo) {
 		r = new Rocket();
@@ -141,6 +120,7 @@ public class GameFrame extends JFrame {
 	
 	MainFrame mPanel;
 	JPanel rightPanel;
+	JPanel center;
 	Draw centerPanel;
 	JLabel time;
 	JLabel points;
@@ -150,5 +130,6 @@ public class GameFrame extends JFrame {
 	JLabel score_points;
 	JButton exit;
 	Rocket r;
+
 
 }
