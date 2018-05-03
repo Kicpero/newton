@@ -4,8 +4,6 @@ import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-
 public class Move {
 	Draw draw;
 	Simulation sym;
@@ -27,7 +25,7 @@ public class Move {
 				}
 			}
 
-		}), 100, 30, TimeUnit.MILLISECONDS);
+		}), 3,25,MILLISECONDS);
 		
 
 	}
