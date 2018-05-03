@@ -2,57 +2,87 @@ package newton;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class Draw extends JPanel {
-	AstronomicalObject object;
+	private static final long serialVersionUID = 1L;
 	GameFrame game;
 	BufferedImage image;
-	
-	ArrayList<BufferedImage> images= new ArrayList<BufferedImage>();
-	String [] names= {"earth", "jupiter", "mars", "mercury", "neptune", "pluto"};
+	AstronomicalObject object;
 
-	
+	List<AstronomicalObject> objects = new ArrayList<AstronomicalObject>();
+	ArrayList<BufferedImage> images = new ArrayList<BufferedImage>();
+	String[] names = { "sun", "mercury", "venus", "earth", "mars", "jupiter" , "neptune", "pluto", "saturn", "uranus"};
+
+	public Draw() {
+		super();
+		this.setBackground(Color.red);
+		this.setVisible(true);
+		addImages();
+		addAstroObject("Slonce",300,300,40,10,30,10,10,100);
+		addAstroObject("Merkury",250,300,40,10,30,10,10,10);
+		addAstroObject("Wenus",200,300,40,10,30,10,10,10);
+		addAstroObject("Ziemie",150,300,40,10,30,10,10,10);
+		addAstroObject("Mars",100,300,40,10,30,10,10,10);
+		addAstroObject("Jowisz",50,300,40,10,30,10,10,20);
+		addAstroObject("Neptun",350,300,40,10,30,10,10,20);
+		addAstroObject("Pluton",400,300,40,10,30,10,10,20);
+		addAstroObject("Saturn",450,300,40,10,30,10,10,20);
+		addAstroObject("Uran",500,300,40,10,30,10,10,20);
+	}
+
 	public void addImages() {
-		for(int i =0; i<names.length; i++) {
-			object.set_name(names[i]);
-			String name_file = object.get_name() + ".png";
-			File imageFile = new File(name_file);
+		for (int i = 0; i < names.length; i++) {
+			String name_file = names[i] + ".png";
+			URL sciezka = getClass().getResource(name_file);
 			try {
 
-				image = ImageIO.read(imageFile);
+				image = ImageIO.read(sciezka);
 				images.add(image);
-				System.out.println("Dodano"+i);
 			} catch (IOException e) {
-				System.err.println("Blad odczytu grafiki dla obiektu" + object.get_name());
+				System.err.println("Blad odczytu grafiki dla obiektu" + names[i]);
 				e.printStackTrace();
 			}
-			
-		}
-	}
-	public void paint(Graphics2D g) {
-		
-		for(int i = 0; i<images.size(); i++) {
-			addImages();
-			g.setColor(Color.BLUE);
-			g.drawRect(200, 200, 100, 100);
-			g.drawImage(images.get(i), 100+10*i, 100+10*i, 100+10*i, 100+10*i, game.centerPanel);
-		}
-		
-	}
-	
-	public void paintComponent(Graphics2D g) {
-		super.paintComponent(g);
 
-		game.centerPanel.paint(g);
+		}
 	}
-	
+
+	public void paint(Graphics g) {
+		for (int i = 0; i < images.size(); i++) {
+			
+			int x= objects.get(i).getX();
+			int y=objects.get(i).getY();
+			int r=objects.get(i).get_r();
+			g.drawImage(images.get(i),x, y, r, r, null);
+		}
+
+	}
+	public void addAstroObject(String name,int x, int y, double Vx, double Vy,int r,double fx,double fy,double m) {
+		AstronomicalObject o = new AstronomicalObject();
+		o.set_name(name);
+		o.set_vx(Vx);
+		o.set_vy(Vy);
+		o.setX(x);
+		o.setY(y);
+		o.set_r(r);
+		o.set_fx(fx);
+		o.set_fy(fy);	
+		o.set_m(m);
+		objects.add(o);		
+		
+	}
+
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		paint(g);
+
+	}
 
 }

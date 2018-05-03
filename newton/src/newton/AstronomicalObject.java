@@ -12,6 +12,7 @@ public class AstronomicalObject  {
 	protected Integer posY;
 	protected double velocityX;
 	protected double velocityY;
+	protected Integer radius;
 	protected double forceX;
 	protected double forceY;
 	protected double mass;
@@ -23,7 +24,7 @@ public class AstronomicalObject  {
 		this.posX = posX;
 	}
 
-	public double getX() {
+	public int getX() {
 		return posX;
 	}
 
@@ -31,7 +32,7 @@ public class AstronomicalObject  {
 		this.posY = posY;
 	}
 
-	public double getY() {
+	public int getY() {
 		return posY;
 	}
 
@@ -50,6 +51,14 @@ public class AstronomicalObject  {
 	
 	public double get_vy() {
 		return velocityY;
+	}
+	public void set_r(int radius) {
+		this.radius = radius;
+	}
+
+	
+	public int get_r() {
+		return radius;
 	}
 
 	public void set_fx(double forceX) {

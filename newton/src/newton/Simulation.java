@@ -11,6 +11,7 @@ public class Simulation implements Runnable {
 	public Simulation(List<AstronomicalObject> objects) {
 		this.objects = objects;
 		this.log = true;// jeśli wartość prawdziwa wykonuje dla obiektu astronomicznego
+		
 	}
 
 	public Simulation(Rocket rocket, List<AstronomicalObject> objects) {
@@ -56,7 +57,7 @@ public class Simulation implements Runnable {
 				objects.get(i).setY((int) (objects.get(i).getY() + objects.get(i).get_vy() * dt));
 			}
 
-			// RYSOWANIE
+			
 		} else {
 			// LICZENIE SIŁY
 			for (int j = 0; j < objects.size(); j++) {
@@ -65,16 +66,15 @@ public class Simulation implements Runnable {
 				tmp3 = Math.sqrt(tmp1 + tmp2);
 				tmp1 = Math.pow(tmp3, 3);
 
-				fx += G * ((rocket.get_m() + rocket.get_fuel()) * objects.get(j).get_m()
-						* (rocket.getX() - objects.get(j).getX())) / tmp1;
+				fx += G * ((rocket.get_m() + rocket.get_fuel()) * objects.get(j).get_m()* (rocket.getX() - objects.get(j).getX())) / tmp1;
 				fy += G * (rocket.get_m() * objects.get(j).get_m() * (rocket.getY() - objects.get(j).getY())) / tmp1;
 			}
 			// DOLICZENIE SIŁY CIOŁKOWSKIEGO
-			// JESZCZE NIE JEST ROZŁOŻONA BO NIE WIEM JAK ZWRÓCIĆ JEJ KIERUNEK
-			fx += (rocket.get_fuelVelo() * rocket.get_consup()) / (rocket.get_m() + rocket.get_consup() * dt)
-					* (rocket.get_m() + rocket.get_fuel());
-			fy += (rocket.get_fuelVelo() * rocket.get_consup()) / (rocket.get_m() + rocket.get_consup() * dt)
-					* (rocket.get_m() + rocket.get_fuel());
+			tmp1 = Math.pow((rocket.getX() - rocket.get_course_x()), 2);
+			tmp2 = Math.pow((rocket.getY() - rocket.get_course_y()), 2);
+			tmp3 = Math.sqrt(tmp1 + tmp2);
+			fx += ((rocket.get_fuelVelo() * rocket.get_consup()) / (rocket.get_m() + rocket.get_consup() * dt)* (rocket.get_m() + rocket.get_fuel()))*(rocket.getX() - rocket.get_course_x()/tmp3);
+			fy += ((rocket.get_fuelVelo() * rocket.get_consup()) / (rocket.get_m() + rocket.get_consup() * dt)* (rocket.get_m() + rocket.get_fuel()))*(rocket.getY() - rocket.get_course_y()/tmp3);
 			rocket.set_fx(fx);
 			rocket.set_fy(fy);
 			// LICZENIE X, Y, Vx, Vy
@@ -86,4 +86,5 @@ public class Simulation implements Runnable {
 			// RYSOWANIE
 		}
 	}
+	
 }
