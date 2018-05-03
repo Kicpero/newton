@@ -7,20 +7,20 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class Move {
-	Draw centerPanel;
+	Draw draw=new Draw();
 	Simulation sym;
 	void rozpocznijRuch() {
 
 		ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 		scheduler.scheduleAtFixedRate((new Runnable() {
 			public void run() {
-				System.out.println("TU DZIAŁA");
-				sym=new Simulation(centerPanel.objects);
+				System.out.println(draw.objects.size());
+				sym=new Simulation(draw.objects);
 				sym.run();
-				System.out.println(centerPanel.objects.size());
-				for (int i = 0; i<centerPanel.objects.size();i++) {
-					centerPanel.updateAstroObject(sym.getAstroObject());
-					centerPanel.repaint();
+				System.out.println(draw.objects.size());
+				for (int i = 0; i<draw.objects.size();i++) {
+					draw.updateAstroObject(sym.getAstroObject());
+					draw.repaint();
 				}
 			}
 
