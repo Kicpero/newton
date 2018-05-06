@@ -23,16 +23,12 @@ public class Move  {
 			public void run() {
 				
 				symA=new Simulation(draw.objects);
-				symA.run();
-				for (int i = 0; i<draw.objects.size();i++) {
-									draw.repaint();
-					
-				}
 				symR=new Simulation(draw.rocket, draw.objects);
+				symA.run();
 				symR.run();
 				draw.repaint();
 				
-			}}), 3,10,MILLISECONDS);
+			}}), 0,10,MILLISECONDS);
 
 	}
 	public Move() {

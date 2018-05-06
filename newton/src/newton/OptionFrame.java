@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 public class OptionFrame  extends JFrame{
+	Draw draw;
 	private static final long serialVersionUID = 1L;
 
 	
@@ -19,17 +20,14 @@ public class OptionFrame  extends JFrame{
 		
 		mainFrame=main;
 		
-		vehicle_color = new JButton("Wybierz kolor rakiety");
+		rocket1 = new JCheckBox("rakieta 1");
+		rocket2 = new JCheckBox("rakieta 2");
+		rocket3 = new JCheckBox("rakieta 3");
 		
-		vehicle_color.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				color = JColorChooser.showDialog(null,"Choose Color",color);
-				
-				
-			}
-		});
+		rocket1.addActionListener(l);
+		rocket2.addActionListener(l);
+		rocket3.addActionListener(l);
+		
 		exit=new JButton("Powrót");
 		exit.addActionListener(new ActionListener() {
 			
@@ -41,12 +39,12 @@ public class OptionFrame  extends JFrame{
 		if(mainFrame.n=="pl")
 		{
 			exit.setText("Powrót");
-			vehicle_color.setText("Wybierz kolor rakiety");
+			
 		}
 		if(mainFrame.n=="en")
 		{
 			exit.setText("Back");
-			vehicle_color.setText("Choose color of vehicle");
+			
 		}
         this.setSize(300, 300);
         
@@ -61,9 +59,13 @@ public class OptionFrame  extends JFrame{
 		rankingPanel=new JPanel();
 		
 		rankingPanel.setLayout(new GridLayout(2,1));
-		rankingPanel.add(vehicle_color);
+		
 		
 		rankingPanel.add(exit);
+		rankingPanel.add(rocket1);
+		rankingPanel.add(rocket2);
+		rankingPanel.add(rocket3);
+		
 		
 		c.ipady = 40;   
 		c.ipadx = 60;
@@ -76,13 +78,37 @@ public class OptionFrame  extends JFrame{
         this.setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 	}
+	ActionListener l = new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			Object source = e.getSource();
+			if(source==rocket1) {
+				String s="rocket1_1";
+				draw.names[0]=s;
+				
+			}
+			if(source==rocket2) {
+				String s="rocket2";
+				draw.names[0]=s;
+			}
+			if(source==rocket3) {
+				String s="rocket3";
+				draw.names[0]=s;
+			}
+			
+		}
+	};
 
 	
 
 	JPanel rankingPanel;
-	JButton vehicle_color;
+	JCheckBox rocket1;
+	JCheckBox rocket2;
+	JCheckBox rocket3;
 	JButton exit;
-	Color color;
+	
 	MainFrame mainFrame;
 	
 
