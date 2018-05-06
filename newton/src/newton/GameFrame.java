@@ -14,7 +14,6 @@ import newton.MainFrame;
 
 public class GameFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
-	
 	public GameFrame(MainFrame main)  {
 		
 		mPanel=main;
@@ -65,7 +64,6 @@ public class GameFrame extends JFrame {
 		
 		// center Panel
 		
-		
 		Move move=new Move();
 		
 		// koniec center Panel
@@ -75,11 +73,9 @@ public class GameFrame extends JFrame {
 		this.setLayout(new BorderLayout());
 		this.add(rightPanel, BorderLayout.NORTH);
 		this.add(move.draw, BorderLayout.CENTER);
-		
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		
 	}	
 	
 	
