@@ -14,8 +14,8 @@ public class Racket extends AstronomicalObject{
 	}
 	
 	public void draw(Graphics2D g) {
-		//g.drawImage(image, posX, posY, game.centerPanel);
-		g.drawRect(posX, posY, 30, 30);
+		g.drawImage(image,(int)posX, (int)posY, game.centerPanel);
+		g.drawRect((int)posX, (int)posY, 30, 30);
 	}
 
 	public void setImage() {

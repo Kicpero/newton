@@ -3,9 +3,7 @@ package newton;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
-import javax.swing.SwingUtilities;
 
 public class Move {
 	Draw draw;
@@ -31,7 +29,7 @@ public class Move {
 				symR.run();
 				draw.repaint();
 				
-			}}), 3,60,MILLISECONDS);
+			}}), 3,10,MILLISECONDS);
 
 	}
 	public Move() {

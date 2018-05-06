@@ -15,26 +15,65 @@ public class Draw extends JPanel {
 	BufferedImage image;
 	AstronomicalObject object;
 	Rocket rocket;
-	
+	double skala=1;
+	double xslonca=450;
+	double yslonca=300;
 	ArrayList<AstronomicalObject> objects = new ArrayList<AstronomicalObject>();
 	ArrayList<BufferedImage> images = new ArrayList<BufferedImage>();
-	String[] names = { "sun", "mercury", "venus", "earth", "mars", "jupiter" , "neptune", "pluto", "saturn", "uranus","rocket1"};
-
+	String[] names = {"sun", "mercury", "venus", "earth", "mars", "jupiter" , "neptune", "saturn", "uranus","rocket1"};
 	public Draw() {
 		super();
 		this.setVisible(true);
 		addImages();
-		addAstroObject("Slonce",300,300,0,0,200,1000);
-		addAstroObject("Merkury",250,300,0,10,30,10);
-		addAstroObject("Wenus",200,300,0,10,30,10);
-		addAstroObject("Ziemie",150,300,0,10,30,10);
-		addAstroObject("Mars",100,300,0,0,30,10);
-		addAstroObject("Jowisz",50,300,0,10,30,20);
-		addAstroObject("Neptun",350,300,0,10,30,20);
-		addAstroObject("Pluton",400,300,0,10,30,20);
-		addAstroObject("Saturn",450,300,0,10,30,20);
-		addAstroObject("Uran",500,300,0,10,30,20);
-		addRocket("Rakieta",50,300,10,10,30,10,10,20,100,1,1);
+		//nazwa,x,y,vx,vy,r,m,a,e
+		addAstroObject("Slonce",xslonca,yslonca,
+				0,0,
+				10,//200
+				20000000,
+				1,1);
+		
+		addAstroObject("Merkury",xslonca-46,yslonca,
+				0,59000,
+				(int)(5*skala*2),
+				3.3,
+				58*skala,0.2056);
+		addAstroObject("Wenus",xslonca-107,yslonca,
+				0,35000,
+				(int)(10*skala*2),
+				47,
+				108.21*skala,0.006773);
+		addAstroObject("Ziemie",xslonca-147,yslonca,
+				0,30300,
+				(int)(10*skala*2),
+				59,
+				150*skala,0.01671);
+		addAstroObject("Mars",xslonca-206,yslonca,
+				0,26500,
+				(int)(5*skala*2),
+				6.4,
+				228*skala,0.0934);
+		addAstroObject("Jowisz",xslonca-740,yslonca,
+				0,13720,
+				(int)(110*skala*2),
+				18990,
+				799*skala,0.0484);
+		addAstroObject("Neptun",xslonca-4444,yslonca,
+				0,5500,
+				(int)(40*skala*2),
+				1024,
+				4495*skala,0.0086);
+		addAstroObject("Saturn",xslonca-1352,yslonca,
+				0,10180,
+				(int)(90*skala*2),
+				5685,
+				1433*skala,0.0542);
+		addAstroObject("Uran",xslonca-2741,yslonca,
+				0,7110,
+				(int)(40*skala*2),
+				868,
+				2872*skala,0.0471);
+		//nazwa,x,y,vx,vy,r,m,f,fc,fv
+		addRocket("Rakieta",xslonca-50,yslonca,10,10,10,20,100,1,1);
 	}
 
 	public void addImages() {
@@ -56,17 +95,16 @@ public class Draw extends JPanel {
 
 		g.setColor(Color.black);
 	    g.fillRect(0,0,900,700);
-		g.fillRect(0, 0, 900, 600);
 		for (int i = 0; i < images.size()-1; i++) {
-			int x=objects.get(i).getX();
-			int y=objects.get(i).getY();
+			double x=objects.get(i).getX();
+			double y=objects.get(i).getY();
 			int r=objects.get(i).get_r();
-			g.drawImage(images.get(i),x, y, r, r, null);
+			g.drawImage(images.get(i),(int)x, (int)y, r, r, null);
 		}
-		g.drawImage(images.get(images.size()-1),rocket.getX(), rocket.getY(), rocket.get_r(), rocket.get_r(), null);
+		g.drawImage(images.get(images.size()-1),(int)rocket.getX(), (int)rocket.getY(), rocket.get_r(), rocket.get_r(), null);
 		
 	}
-	public void addAstroObject(String name,int x, int y, double Vx, double Vy,int r,double m) {
+	public void addAstroObject(String name,double x, double y, double Vx, double Vy,int r,double m,double a,double e) {
 		AstronomicalObject o = new AstronomicalObject();
 		o.set_name(name);
 		o.set_vx(Vx);
@@ -74,24 +112,24 @@ public class Draw extends JPanel {
 		o.setX(x);
 		o.setY(y);
 		o.set_r(r);	
-		o.set_m(m);
+		o.set_m(m*Math.pow(10, 23));
+		o.set_a(a*Math.pow(10, 9));	
+		o.set_e(e);	
 		objects.add(o);		
 		
 	}
-	public void addRocket(String name,int x, int y, double Vx, double Vy,int r,double fx,double fy,double m, double fuel, double fuel_consump, double fuel_velo) {
+	public void addRocket(String name,double x, double y, double Vx, double Vy,int r,double m, double fuel, double fuel_consump, double fuel_velo) {
 		rocket = new Rocket();
-		rocket .set_name(name);
-		rocket .set_vx(Vx);
-		rocket .set_vy(Vy);
-		rocket .setX(x);
-		rocket .setY(y);
+		rocket.set_name(name);
+		rocket.set_vx(Vx);
+		rocket.set_vy(Vy);
+		rocket.setX(x);
+		rocket.setY(y);
 		rocket.set_r(r);
-		rocket .set_fx(fx);
-		rocket .set_fy(fy);	
-		rocket .set_m(m);
-		rocket .set_fuel(fuel);
-		rocket .set_consup(fuel_consump);
-		rocket .set_fuelVelo(fuel_velo);
+		rocket.set_m(m);
+		rocket.set_fuel(fuel);
+		rocket.set_consup(fuel_consump);
+		rocket.set_fuelVelo(fuel_velo);
 		
 }
 	
