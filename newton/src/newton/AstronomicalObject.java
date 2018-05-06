@@ -19,6 +19,7 @@ public class AstronomicalObject  {
 	protected double e;//mimośród
 	protected double a;//wielka półoś
 	protected double fi=0;
+	double size;
 	//-----------------------------------
 	protected double mass;
 	private String name;//nazwa obrazka musi być taka sama jak nazwa obiektu
