@@ -18,7 +18,7 @@ public class Move  {
 	void rozpocznijRuch() {
 		
 
-		ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+		ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(2);
 		scheduler.scheduleAtFixedRate((new Runnable() {
 			public void run() {
 				
@@ -26,6 +26,7 @@ public class Move  {
 				symR=new Simulation(draw.rocket, draw.objects);
 				symA.run();
 				symR.run();
+				
 				draw.repaint();
 				
 			}}), 0,10,MILLISECONDS);

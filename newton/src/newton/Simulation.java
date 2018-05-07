@@ -53,50 +53,7 @@ public class Simulation implements Runnable {
 				objects.get(i).set_fi(objects.get(i).get_fi()+Lo/(Math.pow(r, 2)*objects.get(i).get_m())*10000);
 				//System.out.println("FI: "+objects.get(i).get_fi());
 			}
-			//TA METODA MA JAKIŚ BŁĄD
-			/*
-			 // LICZENIE SIŁY
-			 
-			for (int i = 0; i < objects.size(); i++) {
-				System.out.println("CIAŁO NUMER "+i+" ODDZIALUJE Z:");
-				for (int j = 0; j < objects.size(); j++) {
-					if (i != j) {
-						tmp1 = Math.pow((objects.get(i).getX()*poprawka - objects.get(j).getX()*poprawka), 2);
-						System.out.println(tmp1);
-						tmp2 = Math.pow((objects.get(i).getY()*poprawka- objects.get(j).getY()*poprawka), 2);
-						System.out.println(tmp2);
-						tmp3 = Math.sqrt(tmp1 + tmp2);
-						System.out.println(tmp3);
-						tmp1 = Math.pow(tmp3, 3);
-						System.out.println(tmp1);
-						fx += G * (objects.get(i).get_m()*objects.get(j).get_m()*(-objects.get(i).getX()*poprawka + objects.get(j).getX()*poprawka))/ tmp1;
-						fy += G * (objects.get(i).get_m()* objects.get(j).get_m()* (-objects.get(i).getY()*poprawka + objects.get(j).getY()*poprawka))/ tmp1;
-						System.out.println(j+". SILA FX: "+fx);
-						System.out.println(j+". SILA FY: "+fy);
-					}
-				}
-				//System.out.println(i+". "+fx);
-				objects.get(i).set_fx(fx);
-				objects.get(i).set_fy(fy);
-				fx = 0;
-				fy = 0;
-			}
-			// LICZENIE X, Y, Vx, Vy
-			for (int i = 0; i < objects.size(); i++) {
-				tmp1=objects.get(i).get_vx() + objects.get(i).get_fx() * dt / (objects.get(i).get_m());
-				System.out.println(i+". VX: "+tmp1);
-				objects.get(i).set_vx(tmp1);
-				tmp1=objects.get(i).get_vy() + objects.get(i).get_fy() * dt / (objects.get(i).get_m());
-				System.out.println(i+". VY: "+tmp1);
-				objects.get(i).set_vy(tmp1);
-				tmp1=(objects.get(i).getX()*poprawka + objects.get(i).get_vx() * dt + objects.get(i).get_fx() * dt*dt / (objects.get(i).get_m()*2))/poprawka;
-				System.out.println(i+". X: "+tmp1);
-				objects.get(i).setX((tmp1));
-				tmp1=(objects.get(i).getY()*poprawka + objects.get(i).get_vy() * dt+ objects.get(i).get_fy() * dt*dt / (objects.get(i).get_m()*2))/poprawka;
-				System.out.println(i+". Y: "+tmp1);
-				objects.get(i).setY((tmp1));
-			}
-			 */
+			
 			
 		} 
 		else {

@@ -1,6 +1,6 @@
 package newton;
 
-import java.awt.Color;
+
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -12,13 +12,15 @@ import javax.swing.*;
 
 public class OptionFrame  extends JFrame{
 	Draw draw;
+	String s="rocket1_1";
+	
 	private static final long serialVersionUID = 1L;
 
 	
 	
-	public OptionFrame(MainFrame main) {
+	public OptionFrame(/*MainFrame main*/) {
 		
-		mainFrame=main;
+		//mainFrame=main;
 		
 		rocket1 = new JCheckBox("rakieta 1");
 		rocket2 = new JCheckBox("rakieta 2");
@@ -36,7 +38,7 @@ public class OptionFrame  extends JFrame{
 				setVisible(false);
 			}
 		});
-		if(mainFrame.n=="pl")
+		/*if(mainFrame.n=="pl")
 		{
 			exit.setText("Powrót");
 			
@@ -45,7 +47,7 @@ public class OptionFrame  extends JFrame{
 		{
 			exit.setText("Back");
 			
-		}
+		}*/
         this.setSize(300, 300);
         
         java.net.URL im = getClass().getResource("background.jpg"); // path to image
@@ -74,7 +76,7 @@ public class OptionFrame  extends JFrame{
 		c.gridy = 1;
 		this.add(rankingPanel, c);
         
-        this.setVisible(true);
+        //this.setVisible(true);
         this.setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 	}
@@ -85,23 +87,25 @@ public class OptionFrame  extends JFrame{
 			
 			Object source = e.getSource();
 			if(source==rocket1) {
-				String s="rocket1_1";
-				draw.names[0]=s;
+				s="rocket1_1";
+				//draw.names[draw.size-1]=s;
 				
 			}
 			if(source==rocket2) {
-				String s="rocket2";
-				draw.names[0]=s;
+				s="rocket2";
+				//draw.names[draw.size-1]=s;
 			}
 			if(source==rocket3) {
-				String s="rocket3";
-				draw.names[0]=s;
+				s="rocket3";
+				//draw.names[draw.size-1]=s;
 			}
 			
 		}
 	};
 
-	
+	public String getS() {
+		return s;
+	}
 
 	JPanel rankingPanel;
 	JCheckBox rocket1;
