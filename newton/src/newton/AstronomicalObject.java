@@ -12,11 +12,11 @@ public class AstronomicalObject  {
 	protected double forceY;
 	protected double energy;
 	protected double energy0;
+
 	//-----------------------------------
 	protected double e;//mimośród
 	protected double a;//wielka półoś
 	protected double fi=0;
-	
 	//-----------------------------------
 	protected double mass;
 	private String name;//nazwa obrazka musi być taka sama jak nazwa obiektu
@@ -86,7 +86,7 @@ public class AstronomicalObject  {
 	public double get_m() {
 		return mass;
 	}
-
+	
 	public void set_fi(double fi) {
 		this.fi=fi;
 	}
@@ -110,7 +110,7 @@ public class AstronomicalObject  {
 	public double get_a() {
 		return a;
 	}
-	
+
 	public double get_energy() {
 		return energy;
 	}

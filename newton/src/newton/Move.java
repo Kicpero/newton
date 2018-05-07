@@ -4,8 +4,8 @@ import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
+public class Move  {
 
-public class Move {
 	Draw draw;
 	GameFrame game;
 	Simulation symA;//symulacja dla obiektów
@@ -15,26 +15,25 @@ public class Move {
 	void rozpocznijRuch() {
 		
 
-		ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+		ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(2);
 		scheduler.scheduleAtFixedRate((new Runnable() {
 			public void run() {
 				
-				symA=new Simulation(draw.objects);
-				symA.run();
-				for (int i = 0; i<draw.objects.size();i++) {
-									draw.repaint();
-					
-				}
-				symR=new Simulation(draw.rocket, draw.objects);
-				symR.run();
-				draw.repaint();
-				
+				symA=new Simulation(draw.objects); 
+				symA.run(); 
+				draw.repaint(); 
+				symR=new Simulation(draw.rocket, draw.objects); 
+				symR.run(); 
+				draw.repaint(); 
+
 			}}), 3,5,MILLISECONDS);
+
 
 	}
 	public Move() {
 		draw=new Draw();
 		rozpocznijRuch();
 	}
+	
 
 }

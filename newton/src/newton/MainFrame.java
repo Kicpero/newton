@@ -65,9 +65,6 @@ public class MainFrame extends JFrame {
 		ranking = new JButton("Ranking");
 		exit = new JButton ("Wyjscie");
 		
-		
-		
-		
 		menuItem1.addActionListener(ItemListener);
 		menuItem2.addActionListener(ItemListener);
 		
@@ -83,10 +80,7 @@ public class MainFrame extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				new GameFrame(MainFrame.this);
-			
-				
+				new GameFrame();
 			}
 		});
 		option.addActionListener(new ActionListener() {
@@ -95,8 +89,6 @@ public class MainFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				optionf=new OptionFrame(/*MainFrame.this*/);
 				optionf.setVisible(true);
-				
-				
 			}
 		});
 		ranking.addActionListener(new ActionListener() {
@@ -128,9 +120,6 @@ public class MainFrame extends JFrame {
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
-		
-	
-		
 	}
 	
 	
@@ -174,8 +163,6 @@ public class MainFrame extends JFrame {
 		JButton game;
 		JButton option;
 		JButton ranking;
-		JButton exit;
-
-		
+		JButton exit;		
 }
 

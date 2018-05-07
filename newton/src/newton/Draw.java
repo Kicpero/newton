@@ -13,10 +13,11 @@ import javax.swing.JPanel;
 
 public class Draw extends JPanel {
 	private static final long serialVersionUID = 1L;
-	GameFrame game;
+	
 	BufferedImage image;
 	// MainFrame main;
 	OptionFrame option = new OptionFrame();
+	GameFrame game = new GameFrame();
 	AstronomicalObject object;
 	Rocket rocket;
 	double skala = 0.5;
@@ -24,14 +25,17 @@ public class Draw extends JPanel {
 	double yslonca = 300;
 	ArrayList<AstronomicalObject> objects = new ArrayList<AstronomicalObject>();
 	ArrayList<BufferedImage> images = new ArrayList<BufferedImage>();
-	String[] names = { "sun", "mercury", "venus", "earth", "mars",option.getS()};
+	String[] names = {"sun", "mercury", "venus", "earth", "mars","rocket1_1"};
 	//String[] names = { "sun", "mercury", "venus", "earth", "mars", "jupiter", "neptune", "saturn", "uranus",option.getS() };
+	//String[] names = { "sun", "mercury", "venus", "earth", "mars", "jupiter", "neptune", "saturn", "uranus","rocket1_1", "rocket1_2", "rocket1_3", "rocket1_4" };
+
 	int count_star = 100;
 	Random r_x = new Random();
 	Random r_y = new Random();
 	Integer[] position_s_x = new Integer[100];// pozycje x gwiazdek
 	Integer[] position_s_y = new Integer[100];// pozycje y gwiazdek
 
+	//int p=game.i+8;
 	public Draw() {
 		super();
 		this.setVisible(true);
@@ -127,7 +131,7 @@ public class Draw extends JPanel {
 			g.setColor(Color.yellow);
 			g.fillOval(position_s_x[i], position_s_y[i], 5, 5);
 		}
-		g.drawImage(images.get(0), (int) objects.get(0).getX(), (int) objects.get(0).getY(), (int)objects.get(0).get_r()*20*(int)skala,(int)objects.get(0).get_r()*20*(int)skala, null);
+		g.drawImage(images.get(0), (int) objects.get(0).getX(), (int) objects.get(0).getY(), (int)objects.get(1).get_r()*6,(int)objects.get(1).get_r()*6, null);
 		for (int i = 0; i < images.size() - 1; i++) {
 			double x = objects.get(i).getX();
 			double y = objects.get(i).getY();

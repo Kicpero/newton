@@ -27,10 +27,12 @@ public class Simulation implements Runnable {
 		double dt = 0.1;
 		double fx = 0;
 		double fy = 0;
+
 		double G = 6.67*Math.pow(10, -6);// Trzeba zmienić potem na wartość rzeczywistą 
 		double tmp1 = 0;
 		double tmp2 = 0;
 		double tmp3 = 0;
+
 		double potentialEnergy=0;
 		double kineticEnergy=0;
 		boolean firstLoop=true;
@@ -113,7 +115,6 @@ public class Simulation implements Runnable {
 				tmp2 = Math.pow((rocket.getY() - objects.get(j).getY()), 2);
 				tmp3 = Math.sqrt(tmp1 + tmp2);
 				tmp1 = Math.pow(tmp3, 3);
-
 				fx += G * ((rocket.get_m() + rocket.get_fuel()) * objects.get(j).get_m()* (-rocket.getX() + objects.get(j).getX()))/tmp1;
 				fy += G * ((rocket.get_m() + rocket.get_fuel()) * objects.get(j).get_m() * (-rocket.getY() + objects.get(j).getY()))/tmp1;
 			}
@@ -141,13 +142,13 @@ public class Simulation implements Runnable {
 			fx = 0;
 			fy = 0;
 			// LICZENIE X, Y, Vx, Vy
-			rocket.set_vx(rocket.get_vx() + rocket.get_fx() * dt / (rocket.get_m() + rocket.get_fuel()));
+			rocket.set_vx(rocket.get_vx() + rocket.get_fx() *dt / (rocket.get_m() + rocket.get_fuel()));
 			System.out.println("VX: "+rocket.get_vx());
-			rocket.set_vy(rocket.get_vy() + rocket.get_fy() * dt / (rocket.get_m() + rocket.get_fuel()));
+			rocket.set_vy(rocket.get_vy() + rocket.get_fy() *dt / (rocket.get_m() + rocket.get_fuel()));
 			System.out.println("VY: "+rocket.get_vy());
 			rocket.setX((int)(rocket.getX() + rocket.get_vx()*dt + rocket.get_fx()*dt*dt / (2*(rocket.get_m() + rocket.get_fuel()))));
 			System.out.println("X: "+rocket.getX());
-			rocket.setY((int)(rocket.getY() + rocket.get_vy() * dt+ rocket.get_fy()*dt*dt / (2*(rocket.get_m() + rocket.get_fuel()))));
+			rocket.setY((int)(rocket.getY() + rocket.get_vy() *dt+ rocket.get_fy()*dt*dt / (2*(rocket.get_m() + rocket.get_fuel()))));
 			System.out.println("Y: "+rocket.getY());
 		}
 		
