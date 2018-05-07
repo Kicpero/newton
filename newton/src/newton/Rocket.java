@@ -1,18 +1,12 @@
 package newton;
 
-import java.awt.Graphics2D;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
 public class Rocket extends AstronomicalObject{
 	protected double  fuel;//paliwo
 	protected double  fuel_consumption;//zurzycie paliwa kg/s
 	protected double  fuel_velocity;//prędkość gazów wylotowych względem rakiety
 
-	protected int course_x;
-	protected int course_y;
+	protected double course_x=1;
+	protected double course_y=1;
 	//kierunki zwrotu rakiety
 	
 	public void set_fuel(double fuel) {
@@ -38,14 +32,14 @@ public class Rocket extends AstronomicalObject{
 	public double get_fuelVelo() {
 		return fuel_velocity;
 	}
-	public void set_course_x(int course_x) {
-		this.course_x = course_x;
+	public void set_course_x(double course_x2) {
+		this.course_x = course_x2;
 	}
 
 	public double get_course_x() {
-		return fuel_velocity;
+		return course_x;
 	}
-	public void set_course_y(int course_y) {
+	public void set_course_y(double course_y) {
 		this.course_y = course_y;
 	}
 

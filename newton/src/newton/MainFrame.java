@@ -16,11 +16,12 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
+
 import newton.GameFrame;
 
 public class MainFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
-	
+	OptionFrame optionf;
 	
 	public MainFrame() {
 		super("Start");
@@ -92,7 +93,9 @@ public class MainFrame extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new OptionFrame(MainFrame.this);	
+				optionf=new OptionFrame(/*MainFrame.this*/);
+				optionf.setVisible(true);
+				
 				
 			}
 		});

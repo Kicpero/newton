@@ -9,7 +9,7 @@ public class Move {
 	Draw draw;
 	GameFrame game;
 	Simulation symA;//symulacja dla obiektów
-	//Simulation symR;//symulacja rakiety
+	Simulation symR;//symulacja rakiety
 	
 	
 	void rozpocznijRuch() {
@@ -25,8 +25,8 @@ public class Move {
 									draw.repaint();
 					
 				}
-				//symR=new Simulation(draw.rocket, draw.objects);
-				//symR.run();
+				symR=new Simulation(draw.rocket, draw.objects);
+				symR.run();
 				draw.repaint();
 				
 			}}), 3,5,MILLISECONDS);
