@@ -20,7 +20,8 @@ public class Draw extends JPanel {
 	double yslonca=300;
 	ArrayList<AstronomicalObject> objects = new ArrayList<AstronomicalObject>();
 	ArrayList<BufferedImage> images = new ArrayList<BufferedImage>();
-	String[] names = {"sun", "mercury", "venus", "earth", "mars", "jupiter" , "neptune", "saturn", "uranus","rocket1"};
+	String[] names = {"sun", "mercury","venus","earth", "mars"};
+	//String[] names = {"sun", "mercury", "venus", "earth", "mars", "jupiter" , "neptune", "saturn", "uranus","rocket1"};
 	public Draw() {
 		super();
 		this.setVisible(true);
@@ -33,26 +34,26 @@ public class Draw extends JPanel {
 				1,1);
 		
 		addAstroObject("Merkury",xslonca-46,yslonca,
-				0,59000,
-				(int)(5*skala*2),
+				0,2,
+				(int)(15),
 				3.3,
 				58*skala,0.2056);
 		addAstroObject("Wenus",xslonca-107,yslonca,
-				0,35000,
+				0,1,
 				(int)(10*skala*2),
 				47,
 				108.21*skala,0.006773);
 		addAstroObject("Ziemie",xslonca-147,yslonca,
-				0,30300,
+				0,1,
 				(int)(10*skala*2),
 				59,
 				150*skala,0.01671);
 		addAstroObject("Mars",xslonca-206,yslonca,
-				0,26500,
+				0,0.5,
 				(int)(5*skala*2),
 				6.4,
-				228*skala,0.0934);
-		addAstroObject("Jowisz",xslonca-740,yslonca,
+				228*skala,0.934);
+		/*addAstroObject("Jowisz",xslonca-740,yslonca,
 				0,13720,
 				(int)(110*skala*2),
 				18990,
@@ -73,7 +74,7 @@ public class Draw extends JPanel {
 				868,
 				2872*skala,0.0471);
 		//nazwa,x,y,vx,vy,r,m,f,fc,fv
-		addRocket("Rakieta",xslonca-50,yslonca,10,10,10,20,100,1,1);
+		addRocket("Rakieta",xslonca-50,yslonca,10,10,10,20,100,1,1);*/
 	}
 
 	public void addImages() {
@@ -95,13 +96,14 @@ public class Draw extends JPanel {
 
 		g.setColor(Color.black);
 	    g.fillRect(0,0,900,700);
-		for (int i = 0; i < images.size()-1; i++) {
+		//for (int i = 0; i < images.size()-1; i++) {
+		for (int i = 0; i < images.size(); i++) {
 			double x=objects.get(i).getX();
 			double y=objects.get(i).getY();
 			int r=objects.get(i).get_r();
 			g.drawImage(images.get(i),(int)x, (int)y, r, r, null);
 		}
-		g.drawImage(images.get(images.size()-1),(int)rocket.getX(), (int)rocket.getY(), rocket.get_r(), rocket.get_r(), null);
+		//g.drawImage(images.get(images.size()-1),(int)rocket.getX(), (int)rocket.getY(), rocket.get_r(), rocket.get_r(), null);
 		
 	}
 	public void addAstroObject(String name,double x, double y, double Vx, double Vy,int r,double m,double a,double e) {
@@ -112,7 +114,8 @@ public class Draw extends JPanel {
 		o.setX(x);
 		o.setY(y);
 		o.set_r(r);	
-		o.set_m(m*Math.pow(10, 23));
+		//o.set_m(m*Math.pow(10, 23));
+		o.set_m(m);
 		o.set_a(a*Math.pow(10, 9));	
 		o.set_e(e);	
 		objects.add(o);		

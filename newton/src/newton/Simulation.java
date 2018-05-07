@@ -30,16 +30,16 @@ public class Simulation implements Runnable {
 		double dt = 0.1;
 		double fx = 0;
 		double fy = 0;
-		double G = 6.67*Math.pow(10, -11)*Math.pow(88*24*3600/100,2);// Trzeba zmienić potem na wartość rzeczywistą 
+		double G = 6.67*Math.pow(10, -6);// Trzeba zmienić potem na wartość rzeczywistą 
 		double tmp1 = 0;
 		double tmp2 = 0;
 		double tmp3 = 0;
-		double poprawka=Math.pow(10, 9);
+		double poprawka=1;
 		//---------------------------
 		double Lo=0;
 		double r=0;
 		if (log == true) {
-			for (int i = 1; i < objects.size(); i++) {
+		/*	for (int i = 1; i < objects.size(); i++) {
 				//System.out.println("OBIKET: "+i);
 				r=objects.get(i).get_a()*(1-Math.pow(objects.get(i).get_e(), 2))/(1+objects.get(i).get_e()*Math.cos(objects.get(i).get_fi()));
 				//System.out.println("X: "+objects.get(i).getX());
@@ -52,9 +52,9 @@ public class Simulation implements Runnable {
 				//System.out.println("Y NEW: "+objects.get(i).getY());
 				objects.get(i).set_fi(objects.get(i).get_fi()+Lo/(Math.pow(r, 2)*objects.get(i).get_m())*10000);
 				//System.out.println("FI: "+objects.get(i).get_fi());
-			}
+			}*/
 			//TA METODA MA JAKIŚ BŁĄD
-			/*
+			
 			 // LICZENIE SIŁY
 			 
 			for (int i = 0; i < objects.size(); i++) {
@@ -97,8 +97,6 @@ public class Simulation implements Runnable {
 				System.out.println(i+". Y: "+tmp1);
 				objects.get(i).setY((tmp1));
 			}
-			 */
-			
 		} 
 		else {
 			// LICZENIE SIŁY
