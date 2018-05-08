@@ -1,11 +1,6 @@
 package newton;
 
-import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 
 public class AstronomicalObject  {
 	protected double posX;
@@ -15,11 +10,13 @@ public class AstronomicalObject  {
 	protected Integer radius;
 	protected double forceX;
 	protected double forceY;
+	protected double energy;
+	protected double energy0;
+
 	//-----------------------------------
 	protected double e;//mimośród
 	protected double a;//wielka półoś
 	protected double fi=0;
-	
 	//-----------------------------------
 	protected double mass;
 	private String name;//nazwa obrazka musi być taka sama jak nazwa obiektu
@@ -62,7 +59,6 @@ public class AstronomicalObject  {
 		this.radius = radius;
 	}
 
-	
 	public int get_r() {
 		return radius;
 	}
@@ -90,7 +86,7 @@ public class AstronomicalObject  {
 	public double get_m() {
 		return mass;
 	}
-	//-----------------------------------
+	
 	public void set_fi(double fi) {
 		this.fi=fi;
 	}
@@ -114,6 +110,22 @@ public class AstronomicalObject  {
 	public double get_a() {
 		return a;
 	}
+
+	public double get_energy() {
+		return energy;
+	}
+	
+	public void set_energy(double energy) {
+		this.energy=energy;
+	}
+	
+	public double get_energy0() {
+		return energy0;
+	}
+	
+	public void set_energy0(double energy0) {
+		this.energy0=energy0;
+	}
 	//-----------------------------------
 	public void set_name(String name) {
 		this.name=name;
@@ -122,20 +134,4 @@ public class AstronomicalObject  {
 	public String get_name() {
 		return name;
 	}
-	
-	/*public void draw(Graphics2D g) {
-		g.drawImage(image, (int)posX, (int)posY, game.centerPanel);
-	}
-
-	public void setImage() {
-
-		String name_file = name + ".png";
-		File imageFile = new File(name_file);
-		try {
-			image = ImageIO.read(imageFile);
-		} catch (IOException e) {
-			System.err.println("Blad odczytu grafiki dla obiektu" + name);
-			e.printStackTrace();
-		}
-	}*/
 }

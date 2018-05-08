@@ -1,14 +1,11 @@
 package newton;
 
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
-
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
-
 public class Move  {
+
 	Draw draw;
 	GameFrame game;
 	Simulation symA;//symulacja dla obiektów
@@ -22,13 +19,15 @@ public class Move  {
 		scheduler.scheduleAtFixedRate((new Runnable() {
 			public void run() {
 				
-				symA=new Simulation(draw.objects);
-				symR=new Simulation(draw.rocket, draw.objects);
-				symA.run();
-				symR.run();
-				draw.repaint();
-				
-			}}), 0,10,MILLISECONDS);
+				symA=new Simulation(draw.objects); 
+				symA.run(); 
+				draw.repaint(); 
+				symR=new Simulation(draw.rocket, draw.objects); 
+				symR.run(); 
+				draw.repaint(); 
+
+			}}), 3,5,MILLISECONDS);
+
 
 	}
 	public Move() {
