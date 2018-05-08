@@ -84,7 +84,7 @@ public class MainFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				new GameFrame();
+				new GameFrame(MainFrame.this);
 			
 				
 			}

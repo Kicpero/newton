@@ -18,8 +18,8 @@ public class Draw extends JPanel {
 	
 	BufferedImage image;
 	// MainFrame main;
-	OptionFrame option = new OptionFrame();
-	GameFrame game = new GameFrame();
+	//OptionFrame option = new OptionFrame();
+	//GameFrame game = new GameFrame();
 	AstronomicalObject object;
 	Rocket rocket;
 	double skala = 0.5;
@@ -35,7 +35,7 @@ public class Draw extends JPanel {
 	Integer[] position_s_x = new Integer[100];// pozycje x gwiazdek
 	Integer[] position_s_y = new Integer[100];// pozycje y gwiazdek
 
-	int p=game.i+8;
+	//int p=game.i+8;
 	public Draw() {
 		super();
 		this.setVisible(true);
@@ -92,13 +92,13 @@ public class Draw extends JPanel {
 			g.fillOval(position_s_x[i], position_s_y[i], 5, 5);
 		}
 		g.drawImage(images.get(0), (int) objects.get(0).getX(), (int) objects.get(0).getY(), (int)objects.get(1).get_r()*6,(int)objects.get(1).get_r()*6, null);
-		for (int i = 1; i < images.size() - 1; i++) {
+		for (int i = 1; i < images.size() - 4; i++) {
 			double x = objects.get(i).getX();
 			double y = objects.get(i).getY();
 			double r = objects.get(i).get_r();
 			g.drawImage(images.get(i), (int) x, (int) y, (int) r * 2, (int) r * 2, null);
 		}
-		g.drawImage(images.get(p), (int) rocket.getX(), (int) rocket.getY(), rocket.get_r(),
+		g.drawImage(images.get(9), (int) rocket.getX(), (int) rocket.getY(), rocket.get_r(),
 				rocket.get_r(), null);
 
 	}

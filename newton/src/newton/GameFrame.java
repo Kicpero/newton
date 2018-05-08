@@ -21,8 +21,9 @@ public class GameFrame extends JFrame {
 	double change = 1;// zmiana w paliwie strzałki góra dół
 	int i = 1;// numer grafiki
 
-	public GameFrame() {
+	public GameFrame(MainFrame main) {
 
+		mPanel = main;
 		// this.addKeyListener(this);
 		
 		key();
