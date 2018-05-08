@@ -26,7 +26,7 @@ public class Move  {
 				symR.run(); 
 				draw.repaint(); 
 
-			}}), 3,5,MILLISECONDS);
+			}}), 3,2,MILLISECONDS);
 
 
 	}

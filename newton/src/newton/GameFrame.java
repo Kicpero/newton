@@ -36,6 +36,10 @@ public class GameFrame extends JFrame {
 		points = new JLabel("PUNKTY:");
 		score_points = new JLabel("...");
 		exit = new JButton("Powrót");
+		exit.setBackground(Color.WHITE);
+		time.setForeground(Color.WHITE);
+		fuel.setForeground(Color.WHITE);
+		points.setForeground(Color.WHITE);
 		exit.addActionListener(new ActionListener() {
 
 			@Override
@@ -66,7 +70,7 @@ public class GameFrame extends JFrame {
 		rightPanel.add(score_points);
 		rightPanel.add(exit);
 		rightPanel.setPreferredSize(new Dimension(500, 40));
-		rightPanel.setBackground(Color.WHITE);
+		rightPanel.setBackground(Color.BLACK);
 		// koniec right Panel
 
 		// center Panel
@@ -76,9 +80,9 @@ public class GameFrame extends JFrame {
 		// koniec center Panel
 
 		// razem
-		this.setSize(900, 600);
+		this.setSize(900, 700);
 		this.setLayout(new BorderLayout());
-		// this.add(rightPanel, BorderLayout.NORTH);
+		this.add(rightPanel, BorderLayout.NORTH);
 		this.add(move.draw, BorderLayout.CENTER);
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);

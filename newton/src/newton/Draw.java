@@ -25,7 +25,8 @@ public class Draw extends JPanel {
 	double yslonca = 300;
 	ArrayList<AstronomicalObject> objects = new ArrayList<AstronomicalObject>();
 	ArrayList<BufferedImage> images = new ArrayList<BufferedImage>();
-	String[] names = {"sun", "mercury", "venus", "earth", "mars","rocket1_1"};
+	String[] names = {"sun", "mercury", "venus", "earth", "mars","jupiter","moon","rocket1_1"};
+	String points = "star";
 	//String[] names = { "sun", "mercury", "venus", "earth", "mars", "jupiter", "neptune", "saturn", "uranus",option.getS() };
 	//String[] names = { "sun", "mercury", "venus", "earth", "mars", "jupiter", "neptune", "saturn", "uranus","rocket1_1", "rocket1_2", "rocket1_3", "rocket1_4" };
 
@@ -45,11 +46,11 @@ public class Draw extends JPanel {
 		// nazwa,x,y,vx,vy,r,m,a,e
 		addAstroObject("Slonce",xslonca,yslonca, 
 			0,0, 
-			30,//200 
+			50,//200 
 			20000000, 
 			1,1); 
 		addAstroObject("Merkury",xslonca-46,yslonca, 
-			0,2, 
+			0,1.8, 
 			(int)(5), 
 			3.3, 
 			58*skala,0.2056); 
@@ -68,12 +69,17 @@ public class Draw extends JPanel {
 			(int)(5*skala*2), 
 			6.4, 
 			228*skala,0.934); 
-		/*addAstroObject("Jowisz",xslonca-740,yslonca, 
-				0,13720, 
-				(int)(110*skala*2), 
+		addAstroObject("Jowisz",xslonca-475,yslonca, 
+				0,0.5, 
+				(int)(110*skala), 
 				18990, 
 				799*skala,0.0484); 
-		addAstroObject("Neptun",xslonca-4444,yslonca, 
+		addAstroObject("Ksiezyc",xslonca-153,yslonca+6, 
+				0.09,1.0, 
+				(int)(10*skala), 
+				0.01, 
+				799*skala,0.0484); 
+		/*addAstroObject("Neptun",xslonca-4444,yslonca, 
 				0,5500, 
 				(int)(40*skala*2), 
 				1024, 
@@ -89,11 +95,11 @@ public class Draw extends JPanel {
 				868, 
 				2872*skala,0.0471); 
 		//nazwa,x,y,vx,vy,r,m,f,fc,fv,cx,cy */
-		addRocket("Rakieta",xslonca-50,yslonca,
-				0,2,
+		addRocket("Rakieta",xslonca-70,yslonca,
+				1,1.5,
 				10,
-				3.3,
-				1,0.001,0.01,
+				0.01,
+				0.1,0.00001,0.001,
 				1,1);
 	}
 
@@ -121,6 +127,16 @@ public class Draw extends JPanel {
 				e.printStackTrace();
 			}
 		}
+		String name_file = points + ".png";
+		URL sciezka = getClass().getResource(name_file);
+		try {
+
+			image = ImageIO.read(sciezka);
+			images.add(image);
+		} catch (IOException e) {
+			System.err.println("Blad odczytu grafiki dla obiektu" + points);
+			e.printStackTrace();
+		}
 	}
 
 	public void paint(Graphics g) {
@@ -128,17 +144,19 @@ public class Draw extends JPanel {
 		g.setColor(Color.black);
 		g.fillRect(0, 0, 900, 700);
 		for (int i = 0; i < count_star; i++) {
-			g.setColor(Color.yellow);
-			g.fillOval(position_s_x[i], position_s_y[i], 5, 5);
+			/*g.setColor(Color.yellow);
+			g.fillOval(position_s_x[i], position_s_y[i], 5, 5);*/
+			g.drawImage(images.get(images.size()-1), position_s_x[i], position_s_y[i], 6, 6, null);
+			
 		}
-		g.drawImage(images.get(0), (int) objects.get(0).getX(), (int) objects.get(0).getY(), (int)objects.get(1).get_r()*6,(int)objects.get(1).get_r()*6, null);
-		for (int i = 1; i < images.size() - 1; i++) {
+		g.drawImage(images.get(0), (int) objects.get(0).getX()-(int)objects.get(0).get_r(), (int) objects.get(0).getY()-(int)objects.get(0).get_r(), (int)objects.get(0).get_r()*2,(int)objects.get(0).get_r()*2, null);
+		for (int i = 1; i < images.size() - 2; i++) {
 			double x = objects.get(i).getX();
 			double y = objects.get(i).getY();
 			double r = objects.get(i).get_r();
-			g.drawImage(images.get(i), (int) x, (int) y, (int) r * 2, (int) r * 2, null);
+			g.drawImage(images.get(i), (int)(x-r), (int)(y-r), (int) r * 2, (int) r * 2, null);
 		}
-		g.drawImage(images.get(images.size() - 1), (int) rocket.getX(), (int) rocket.getY(), rocket.get_r(),
+		g.drawImage(images.get(images.size() - 2), (int) rocket.getX(), (int) rocket.getY(), rocket.get_r(),
 				rocket.get_r(), null);
 
 	}

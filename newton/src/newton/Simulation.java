@@ -3,9 +3,11 @@ package newton;
 import java.util.ArrayList;
 
 public class Simulation implements Runnable {
+	
 	ArrayList<AstronomicalObject> objects = new ArrayList<AstronomicalObject>();
 	Rocket rocket = new Rocket();
 	boolean log = true;
+	static double totalEnergy0=0;
 
 	public Simulation(ArrayList<AstronomicalObject> objects) {
 		this.objects = objects;
@@ -35,7 +37,7 @@ public class Simulation implements Runnable {
 
 		double potentialEnergy=0;
 		double kineticEnergy=0;
-		boolean firstLoop=true;
+		double totalEnergy=0;
 		double epsilon=0.0001;//dokładność ZZE
 		//---------------------------
 		/*double Lo=0;
@@ -76,13 +78,15 @@ public class Simulation implements Runnable {
 				}
 				objects.get(i).set_fx(fx);
 				objects.get(i).set_fy(fy);
+				totalEnergy+=potentialEnergy+kineticEnergy;
 				objects.get(i).set_energy(potentialEnergy+kineticEnergy);
 				fx = 0;
 				fy = 0;
 				//----------------------------DODANIE E0----------------------------------
-				if (firstLoop==true) {
+				if (objects.get(i).get_loop()==true) {
 					objects.get(i).set_energy0(potentialEnergy+kineticEnergy);
-					firstLoop=false;
+					totalEnergy0+=potentialEnergy+kineticEnergy;
+					objects.get(i).set_loop(false);
 				}
 				potentialEnergy=0;
 				kineticEnergy=0;
@@ -101,12 +105,11 @@ public class Simulation implements Runnable {
 				tmp1=(objects.get(i).getY() + objects.get(i).get_vy() * dt+ objects.get(i).get_fy() * dt*dt / (objects.get(i).get_m()*2));
 				objects.get(i).setY((tmp1));
 				//----------------------------POPRAWKA ENERGETYCZNA-----------------------------
-				if(Math.abs(objects.get(i).get_energy()-objects.get(i).get_energy0())>epsilon) {
-					/*System.out.println("CIAŁO: "+i+"ZZE CHUJ");
-					System.out.println("PO: "+objects.get(i).get_energy());
-					System.out.println("PRZED: "+objects.get(i).get_energy0());*/
+				if(Math.abs(totalEnergy0-totalEnergy)>epsilon) {
+					//System.out.println("ENERGIA 0: "+totalEnergy0+" ENERGIA POTEM: "+totalEnergy);
 				}
 			}
+			totalEnergy=0;
 		} 
 		else {
 			// LICZENIE SIŁY
@@ -119,11 +122,9 @@ public class Simulation implements Runnable {
 				fy += G * ((rocket.get_m() + rocket.get_fuel()) * objects.get(j).get_m() * (-rocket.getY() + objects.get(j).getY()))/tmp1;
 			}
 			// DOLICZENIE SIŁY CIOŁKOWSKIEGO
-			//System.out.println("STARE: "+fx);
-			//System.out.println(fy);
-			/*if(rocket.get_fuel()>0)
+			if(rocket.get_fuel()>0)
 			{
-				System.out.println("ILOŚĆ PALIWA TO:"+rocket.get_fuel());
+				//System.out.println("ILOŚĆ PALIWA TO:"+rocket.get_fuel());
 				tmp1 = Math.pow((rocket.getX() - rocket.get_course_x()), 2);
 				tmp2 = Math.pow((rocket.getY() - rocket.get_course_y()), 2);
 				tmp3 = Math.sqrt(tmp1 + tmp2);
@@ -134,21 +135,30 @@ public class Simulation implements Runnable {
 			else
 			{
 				System.out.println("KONIEC PALIWA");
-			}*/
+			}
 			rocket.set_fx(fx);
 			rocket.set_fy(fy);
-			//System.out.println("NOWE: "+fx);
-			//System.out.println(fy);
+			//System.out.println("FX RAKIETY: "+fx);
+			//System.out.println("FY RAKIETY: "+fy);
 			fx = 0;
 			fy = 0;
 			// LICZENIE X, Y, Vx, Vy
-			rocket.set_vx(rocket.get_vx() + rocket.get_fx() *dt / (rocket.get_m() + rocket.get_fuel()));
-			//System.out.println("VX: "+rocket.get_vx());
-			rocket.set_vy(rocket.get_vy() + rocket.get_fy() *dt / (rocket.get_m() + rocket.get_fuel()));
-			//System.out.println("VY: "+rocket.get_vy());
-			rocket.setX((int)(rocket.getX() + rocket.get_vx()*dt + rocket.get_fx()*dt*dt / (2*(rocket.get_m() + rocket.get_fuel()))));
+			tmp1=rocket.get_vx() + rocket.get_fx() *dt / (rocket.get_m() + rocket.get_fuel());
+			rocket.set_vx(tmp1);
+			//System.out.println("VX RAKIETY: "+rocket.get_vx());
+			tmp1=rocket.get_vy() + rocket.get_fy() *dt / (rocket.get_m() + rocket.get_fuel());
+			rocket.set_vy(tmp1);
+			//System.out.println("VY RAKIETY: "+rocket.get_vy());
+			tmp1=(rocket.getX() + rocket.get_vx()*dt + rocket.get_fx()*dt*dt / (2*(rocket.get_m() + rocket.get_fuel())));
+			if(tmp1<0)rocket.setX(tmp1+900);
+			else if(tmp1>900)rocket.setX(tmp1-900);
+			else rocket.setX(tmp1);
 			//System.out.println("X: "+rocket.getX());
-			rocket.setY((int)(rocket.getY() + rocket.get_vy() *dt+ rocket.get_fy()*dt*dt / (2*(rocket.get_m() + rocket.get_fuel()))));
+			tmp1=(rocket.getY() + rocket.get_vy() *dt+ rocket.get_fy()*dt*dt / (2*(rocket.get_m() + rocket.get_fuel())));
+			if(tmp1<0)rocket.setY(tmp1+600);
+			else if(tmp1>600)rocket.setY(tmp1-600);
+			else rocket.setY(tmp1);
+			
 			//System.out.println("Y: "+rocket.getY());
 		}
 		

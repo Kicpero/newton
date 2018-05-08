@@ -12,6 +12,7 @@ public class AstronomicalObject  {
 	protected double forceY;
 	protected double energy;
 	protected double energy0;
+	protected boolean firstLoop=true;
 
 	//-----------------------------------
 	protected double e;//mimośród
@@ -125,6 +126,13 @@ public class AstronomicalObject  {
 	
 	public void set_energy0(double energy0) {
 		this.energy0=energy0;
+	}
+	public boolean get_loop() {
+		return firstLoop;
+	}
+	
+	public void set_loop(boolean firstLoop) {
+		this.firstLoop=firstLoop;
 	}
 	//-----------------------------------
 	public void set_name(String name) {
